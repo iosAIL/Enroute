@@ -72,6 +72,7 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 
 ## Wireframes!
 <img src="https://i.imgur.com/RFf0jyN.jpg" width=600> 
+
 ### [BONUS] Digital Wireframes & Mockups
 
 ### [BONUS] Interactive Prototype
