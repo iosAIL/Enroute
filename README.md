@@ -77,10 +77,25 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 
 ### [BONUS] Interactive Prototype
 
-## Schema 
-[This section will be completed in Unit 9]
+## Schema  
 ### Models
-[Add table of models]
+#### Package
+
+   | Property        | Type     | Description |
+   | ----------------| -------- | ------------|
+   | user            | String   | user's email |
+   | tracking_number | String   | tracking number of package |
+   | carrier         | String   | carrier of package |
+   | status          | String   | status of package |
+   
+#### Author
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | email         | string   | email of user account |
+   | password      | string   | password of user account|
+   | packages      | List     | a list of pointer to author's package|
+   
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
