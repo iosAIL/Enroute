@@ -89,11 +89,11 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
    | status          | String   | status of package |
    
 #### Author
-   | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | email         | string   | email of user account |
-   | password      | string   | password of user account|
-   | packages      | List     | a list of pointer to author's package|
+   | Property        | Type     | Description |
+   | ----------------| -------- | ------------|
+   | email           | string   | email of user account |
+   | password        | string   | password of user account|
+   | packages        | List     | a list of pointer to author's package|
    
 
 ### Networking
