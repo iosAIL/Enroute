@@ -129,6 +129,15 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
     
 - Login Screen
     - (Read/GET) Query logged in user object
+    ```swift
+    var currentUser = PFUser.current()
+    if currentUser != nil {
+         // Do stuff with the user
+    } else {
+        // Show the signup or login screen
+    }
+    ```
+
     -  User log in
     ```swift
     PFUser.logInWithUsername(inBackground:"myname", password:"mypass") {
@@ -142,9 +151,27 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
     ```
 
 - Register Screen
+    - (Create) Create a new user
+    ```swift
+    var user = PFUser()
+  user.username = "myUsername"
+  user.password = "myPassword"
+  user.email = "email@example.com"
+
+  user.signUpInBackground {
+    (succeeded: Bool, error: Error?) -> Void in
+    if let error = error {
+      let errorString = error.localizedDescription
+      // Show the errorString somewhere and let the user try again.
+    } else {
+      // Hooray! Let them use the app now.
+    }
+  }
+    ```
+    
 - Add Package Screen
     - (Create/POST) Create a new package object
- ```swift
+     ```swift
     let gameScore = PFObject(className:"Package")
     package["author"] = PFUser.current()!
     package["tracking_number"] = "LS912989618CN"
@@ -152,17 +179,14 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
     package["status"] = "transit"
     package["original_country"] = "China"
     package["destination_country"] = "United States"
-    package["order_create_time"] = "2021/04/02 16:51"
+    package["order_create_time"] = "2017/8/27 16:51"
     package.saveInBackground { (succeeded, error)  in
     if (succeeded) {
         // The object has been saved.
     } else {
         // There was a problem, check error.description
     }
-}
- ```
-
-
+     ```
 #### [OPTIONAL:] Existing API Endpoints   
 ##### Order Tracking API
 - Base URL - [https://www.ordertracking.com/api-index.html](http://www.anapioficeandfire.com/api)
