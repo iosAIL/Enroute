@@ -77,26 +77,98 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 
 ### [BONUS] Interactive Prototype
 
-## Schema  
+## Schema 
 ### Models
 #### Package
 
    | Property        | Type     | Description |
    | ----------------| -------- | ------------|
-   | user            | String   | user's email |
-   | tracking_number | String   | tracking number of package |
+   | author          | String   | current user's username |
+   | tracking_number | String   | tracking number of package|
    | carrier         | String   | carrier of package |
    | status          | String   | status of package |
    
 #### Author
-   | Property        | Type     | Description |
-   | ----------------| -------- | ------------|
-   | email           | string   | email of user account |
-   | password        | string   | password of user account|
-   | packages        | List     | a list of pointer to author's package|
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | username      | string   | username of user account |
+   | email         | string   | email of user account |
+   | password      | string   | password of user account|
+   | packages      | List     | a list of pointer to author's package|
    
-
+   
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+#### List of network requests by screen
+- Packages Screen
+    - (Read/GET) Query all packages where user is author
+    ```swift
+    let query = PFQuery(className:"Package")
+    query.whereKey("author", equalTo: currentUser)
+    query.order(byDescending: "order_create_time")
+    query.findObjectsInBackground { (packages: [PFObject]?, error: Error?) in
+       if let error = error {
+          print(error.localizedDescription)
+       } else if let posts = posts {
+          print("Successfully retrieved \(packages.count) packages.")
+          // TODO: Do something with posts...
+       }
+    } 
+    ```
+    
+    - (Delete) Delete a package
+    ```swift
+    PFObject.deleteAll(inBackground: objectArray) { (succeeded, error) in
+        if (succeeded) {
+        // The array of objects was successfully deleted.
+        } else {
+        // There was an error. Check the errors localizedDescription.
+        }
+    }
+    ```
+
+    
+- Login Screen
+    - (Read/GET) Query logged in user object
+    -  User log in
+    ```swift
+    PFUser.logInWithUsername(inBackground:"myname", password:"mypass") {
+    (user: PFUser?, error: Error?) -> Void in
+        if user != nil {
+        // Do stuff after successful login.
+        } else {
+        // The login failed. Check error to see why.
+        }
+    }
+    ```
+
+- Register Screen
+- Add Package Screen
+    - (Create/POST) Create a new package object
+ ```swift
+    let gameScore = PFObject(className:"Package")
+    package["author"] = PFUser.current()!
+    package["tracking_number"] = "LS912989618CN"
+    package["carrier"] = "ups"
+    package["status"] = "transit"
+    package["original_country"] = "China"
+    package["destination_country"] = "United States"
+    package["order_create_time"] = "2017\/8\/27 16:51"
+    package.saveInBackground { (succeeded, error)  in
+    if (succeeded) {
+        // The object has been saved.
+    } else {
+        // There was a problem, check error.description
+    }
+}
+ ```
+
+
+#### [OPTIONAL:] Existing API Endpoints   
+##### Order Tracking API
+- Base URL - [https://www.ordertracking.com/api-index.html](http://www.anapioficeandfire.com/api)
+
+ | HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+ |   `POST`    | /trackings/realtime | Get realtime tracking info for one package
+ |   `GET`    | /carriers | List all carriers
+    
