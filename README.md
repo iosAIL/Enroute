@@ -190,8 +190,6 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
     package["tracking_number"] = "LS912989618CN"
     package["carrier"] = "ups"
     package["status"] = "transit"
-    // use Order tracking API to get package info
-    package["tracking_info"] = [[String:Any]]()
     package.saveInBackground { (succeeded, error)  in
     if (succeeded) {
         // The object has been saved.
@@ -201,6 +199,7 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
      ```
      
 - Package Route Screen 
+    - (POST) Get realtime tracking info for a package
     ```swift
     // Get package tracking info from API
     let headers = [
