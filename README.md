@@ -115,7 +115,7 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
     } 
     ```
     
-    - (Delete) Delete a package
+    - (Delete) Delete all packages
     ```swift
     PFObject.deleteAll(inBackground: objectArray) { (succeeded, error) in
         if (succeeded) {
@@ -125,7 +125,20 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
         }
     }
     ```
-
+    - (Delete) Delete one package
+    ```swift
+    var query = PFQuery(className:"Packages")
+    query.whereKey("tracking_number", equalTo: "\(PFUser.currentUser()?.tracking_number)")
+    query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+        if let error = error {
+          print(error.localizedDescription)
+        } else {
+            for object in objects {
+                object.deleteInBackground()
+            }
+        }
+    })
+    ```
     
 - Login Screen
     - (Read/GET) Query logged in user object
@@ -172,14 +185,13 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 - Add Package Screen
     - (Create/POST) Create a new package object
      ```swift
-    let gameScore = PFObject(className:"Package")
+    let package = PFObject(className:"Packages")
     package["author"] = PFUser.current()!
     package["tracking_number"] = "LS912989618CN"
     package["carrier"] = "ups"
     package["status"] = "transit"
-    package["original_country"] = "China"
-    package["destination_country"] = "United States"
-    package["order_create_time"] = "2017/8/27 16:51"
+    // use Order tracking API to get package info
+    package["tracking_info"] = [[String:Any]]()
     package.saveInBackground { (succeeded, error)  in
     if (succeeded) {
         // The object has been saved.
@@ -187,6 +199,42 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
         // There was a problem, check error.description
     }
      ```
+     
+- Package Route Screen 
+    ```swift
+    // Get package tracking info from API
+    let headers = [
+	    "content-type": "application/json",
+	    "x-rapidapi-key": "133c06b141msh9e7797127c6e6eep1ca795jsnc5e3c1f5762c",
+	    "x-rapidapi-host": "order-tracking.p.rapidapi.com"]
+    let parameters = [
+	    "tracking_number": "1Z74A08E0317341984",
+	    "carrier_code": "ups"] as [String : Any]
+
+    let postData = JSONSerialization.data(withJSONObject: parameters, options:[])
+
+    let request = NSMutableURLRequest(url: NSURL(string: "https://ordertracking.p.rapidapi.com/trackings/realtime")! as URL,
+    cachePolicy: .useProtocolCachePolicy, 
+    timeoutInterval: 10.0)
+    request.httpMethod = "POST"
+    request.allHTTPHeaderFields = headers
+    request.httpBody = postData as Data
+
+    let session = URLSession.shared
+    let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+	    if (error != nil) {
+		    print(error)
+	    } else {
+		    let httpResponse = response as? HTTPURLResponse
+		    print(httpResponse)
+	    }
+    })
+
+    dataTask.resume()
+ 
+     ```
+
+
 #### [OPTIONAL:] Existing API Endpoints   
 ##### Order Tracking API
 - Base URL - [https://www.ordertracking.com/api-index.html](http://www.anapioficeandfire.com/api)
