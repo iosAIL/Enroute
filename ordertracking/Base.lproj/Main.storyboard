@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PackageCell" rowHeight="142" id="wQT-Xw-rFi" customClass="PackageCell" customModule="ordertracking" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PackageCell" rowHeight="142" id="wQT-Xw-rFi" customClass="RouteCell" customModule="ordertracking" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wQT-Xw-rFi" id="zjW-1S-5vf">
@@ -237,7 +237,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onSubmitButton:" destination="HLb-Q0-tte" eventType="touchUpInside" id="jzk-Xe-ozY"/>
-                                    <segue destination="MGX-Gm-uvH" kind="presentation" modalPresentationStyle="fullScreen" id="FPa-tZ-wpI"/>
                                 </connections>
                             </button>
                         </subviews>

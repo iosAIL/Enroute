@@ -128,7 +128,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PackageCell") as! PackageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PackageCell") as! RouteCell
         let locations = trackInfo[indexPath.row]
         let statusDescription = locations["StatusDescription"] as! String
         let date = locations["Date"] as! String

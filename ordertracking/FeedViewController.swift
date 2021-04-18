@@ -7,12 +7,12 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
-
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     let tableview: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = UIColor.white
         tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.separatorColor = UIColor.white
         return tv
     }()
     
@@ -22,7 +22,10 @@ class FeedViewController: UIViewController {
     }
     
     func setupTableView() {
-        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableview.delegate = self
+        tableview.dataSource = self
+        
+        tableview.register(PackageTableViewCell.self, forCellReuseIdentifier: "cellId")
         
         view.addSubview(tableview)
         
@@ -34,6 +37,20 @@ class FeedViewController: UIViewController {
         ])
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PackageTableViewCell
+        cell.backgroundColor = UIColor.white
+        cell.dayLabel.text = "Day \(indexPath.row+1)"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
 
     /*
     // MARK: - Navigation
