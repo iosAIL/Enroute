@@ -157,7 +157,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pjD-4Y-4ng"/>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.76078431369999999" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99662894010000003" green="0.82740044589999995" blue="0.46922749279999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="passwordField" destination="6nQ-Xg-LjV" id="EDD-tg-xh2"/>
@@ -218,7 +218,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jWP-RM-9HC"/>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.76078431369999999" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99662894010000003" green="0.82740044589999995" blue="0.46922749279999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="J5X-Qj-bUB"/>
                     <connections>
