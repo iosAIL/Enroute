@@ -20,6 +20,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     
     var packages = [PFObject]()
+    var currentUser = PFUser.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidAppear(animated)
         
         let query = PFQuery(className:"Packages")
-        query.includeKey("author")
-        //query.whereKey("author", equalTo: currentUser())
+        query.whereKey("author", equalTo: currentUser!)
         query.limit = 20
         
         query.findObjectsInBackground { (packages, error) in
@@ -44,6 +44,20 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    
+    @IBAction func onLogout(_ sender: Any) {
+        PFUser.logOut()
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(identifier: "LoginViewController")
+                
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                let delegate = windowScene.delegate as? SceneDelegate
+        else {
+            return
+        }
+        delegate.window?.rootViewController = loginViewController
+                
+    }
     
     func setupTableView() {
         tableview.delegate = self

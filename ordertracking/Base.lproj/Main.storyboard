@@ -91,7 +91,7 @@
         <!--Login View Controller-->
         <scene sceneID="2l3-y3-EX7">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="7ku-f4-eTL" customClass="LoginViewController" customModule="ordertracking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" modalPresentationStyle="fullScreen" id="7ku-f4-eTL" customClass="LoginViewController" customModule="ordertracking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jJe-EJ-xA9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,7 +180,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Packages" id="ZAp-SD-Y0W">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="U6m-88-hTY"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="U6m-88-hTY">
+                            <connections>
+                                <action selector="onLogout:" destination="bQg-w7-aFs" id="UmH-wt-dQx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="13B-8O-nAw">
                             <connections>
                                 <segue destination="HLb-Q0-tte" kind="presentation" id="kF7-6o-2Xa"/>
