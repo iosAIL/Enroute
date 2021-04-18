@@ -172,9 +172,9 @@
         <!--Submit Info View Controller-->
         <scene sceneID="bZk-8E-HNG">
             <objects>
-                <viewController id="HLb-Q0-tte" customClass="SubmitInfoViewController" customModule="ordertracking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="HLb-Q0-tte" customClass="SubmitInfoViewController" customModule="ordertracking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0vT-uJ-hih">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TTE-uu-OaP">
