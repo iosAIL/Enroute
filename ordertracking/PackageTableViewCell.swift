@@ -58,7 +58,7 @@ class PackageTableViewCell: UITableViewCell {
         // dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
         trackingNumberLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20).isActive = true
         trackingNumberLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
-        carrierLabel.topAnchor.constraint(equalTo: trackingNumberLabel.bottomAnchor, constant: 20).isActive = true
+        carrierLabel.topAnchor.constraint(equalTo: trackingNumberLabel.bottomAnchor, constant: 10).isActive = true
         carrierLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
     }
     
