@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B943527262BC7DA005D2090 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B943526262BC7DA005D2090 /* LoginViewController.swift */; };
 		C68374555AD8ED17C6DFE5CC /* Pods_ordertracking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C49BDAC19702D3723CCA52D /* Pods_ordertracking.framework */; };
 		D45828C8261FFC500044C735 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45828C7261FFC500044C735 /* AppDelegate.swift */; };
 		D45828CA261FFC500044C735 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45828C9261FFC500044C735 /* SceneDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B943526262BC7DA005D2090 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1BC2B969FC692CADA43C637A /* Pods-ordertracking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ordertracking.release.xcconfig"; path = "Target Support Files/Pods-ordertracking/Pods-ordertracking.release.xcconfig"; sourceTree = "<group>"; };
 		3C49BDAC19702D3723CCA52D /* Pods_ordertracking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ordertracking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45828C4261FFC500044C735 /* ordertracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ordertracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +54,6 @@
 				E80FCA3D790171CF8EDBDF6D /* Pods-ordertracking.debug.xcconfig */,
 				1BC2B969FC692CADA43C637A /* Pods-ordertracking.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -94,6 +95,7 @@
 				D45828D0261FFC520044C735 /* Assets.xcassets */,
 				D45828D2261FFC520044C735 /* LaunchScreen.storyboard */,
 				D45828D5261FFC520044C735 /* Info.plist */,
+				1B943526262BC7DA005D2090 /* LoginViewController.swift */,
 			);
 			path = ordertracking;
 			sourceTree = "<group>";
@@ -212,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B943527262BC7DA005D2090 /* LoginViewController.swift in Sources */,
 				D45828E026203DA90044C735 /* SubmitInfoViewController.swift in Sources */,
 				D45828DD262034AC0044C735 /* PackageCell.swift in Sources */,
 				D45828CC261FFC500044C735 /* TrackViewController.swift in Sources */,
