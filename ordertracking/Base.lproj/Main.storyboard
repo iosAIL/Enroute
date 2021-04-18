@@ -240,6 +240,14 @@
                                     <segue destination="MGX-Gm-uvH" kind="presentation" modalPresentationStyle="fullScreen" id="FPa-tZ-wpI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqF-SG-Hhv">
+                                <rect key="frame" x="171" y="507" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelAdd:" destination="HLb-Q0-tte" eventType="touchUpInside" id="3Bv-Mj-2cc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jWP-RM-9HC"/>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.76078431369999999" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
