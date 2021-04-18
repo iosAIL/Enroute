@@ -236,6 +236,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="onSubmitButton:" destination="HLb-Q0-tte" eventType="touchUpInside" id="jzk-Xe-ozY"/>
                                     <segue destination="MGX-Gm-uvH" kind="presentation" modalPresentationStyle="fullScreen" id="FPa-tZ-wpI"/>
                                 </connections>
                             </button>
@@ -246,7 +247,6 @@
                     <navigationItem key="navigationItem" id="J5X-Qj-bUB"/>
                     <connections>
                         <outlet property="carrierInput" destination="Uac-Zh-xVE" id="sYW-uG-cMH"/>
-                        <outlet property="submitButton" destination="vaY-G6-5Dx" id="d29-4N-zBj"/>
                         <outlet property="trackNumInput" destination="TTE-uu-OaP" id="a2I-Oc-VLL"/>
                     </connections>
                 </viewController>
