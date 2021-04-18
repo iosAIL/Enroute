@@ -18,9 +18,6 @@ class SubmitInfoViewController: UIViewController {
         //submitButton.layer.cornerRadius = 15
     }
     
-    @IBAction func cancelAdd(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func onSubmitButton(_ sender: Any) {
         let package = PFObject(className: "Packages")
