@@ -52,16 +52,20 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
                     // if (trackingData != nil) {
                     //     returnValue = trackingData
                     // }
+                    print(data)
                     let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-                    // print(dataDictionary)
+                    print(dataDictionary)
                     let packageInfo = dataDictionary["data"] as! [String : Any]
-                    // print(packageInfo)
+                    print(packageInfo)
                     if packageInfo["items"] == nil {
                         return completion([])
                     }
                     let items = packageInfo["items"] as! [[String:Any]]
                     // print(items)
                     let lastEvent = items[0]["lastEvent"] as! String
+                    if (lastEvent.count <= 0) {
+                        return completion([])
+                    }
                     // print(lastEvent)
                     let lastUpdateTime = items[0]["lastUpdateTime"] as! String
                     // print(lastUpdateTime)

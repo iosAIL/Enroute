@@ -12,12 +12,14 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        registerButton.layer.cornerRadius = 7
+        loginButton.layer.cornerRadius = 7
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -31,9 +33,11 @@ class LoginViewController: UIViewController {
                 
         user.signUpInBackground { (success, error) in
             if success {
+                self.usernameField.text = ""
+                self.passwordField.text = ""
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             } else {
-                print("Error: \(String(describing: error?.localizedDescription))")
+                print("Error: \(error!.localizedDescription))")
             }
         }
     }
@@ -45,6 +49,8 @@ class LoginViewController: UIViewController {
                 
         PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
             if user != nil {
+                self.usernameField.text = ""
+                self.passwordField.text = ""
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             } else {
                 print("Error: \(String(describing: error?.localizedDescription))")

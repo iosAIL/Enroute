@@ -13,9 +13,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let tableview: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = UIColor.white
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.separatorColor = UIColor.white
         return tv
     }()
     
@@ -37,7 +34,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         query.findObjectsInBackground { (packages, error) in
             if packages != nil {
                 self.packages = packages!
-                print(packages!)
                 self.tableview.reloadData()
             }
         
@@ -47,21 +43,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
-        let main = UIStoryboard(name: "Main", bundle: nil)
-        let loginViewController = main.instantiateViewController(identifier: "LoginViewController")
-                
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                let delegate = windowScene.delegate as? SceneDelegate
-        else {
-            return
-        }
-        delegate.window?.rootViewController = loginViewController
-                
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setupTableView() {
         tableview.delegate = self
         tableview.dataSource = self
+        
+        tableview.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        tableview.translatesAutoresizingMaskIntoConstraints = false
+        tableview.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         tableview.register(PackageTableViewCell.self, forCellReuseIdentifier: "cellId")
         
@@ -82,14 +73,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PackageTableViewCell
-        cell.backgroundColor = UIColor.white
-        cell.dayLabel.text = "Day \(indexPath.row+1)"
+        cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        // cell.trackingNumber.text = "Tracking Number: \(packages[indexPath.row]["tracking_number"] as! String)"
+        cell.trackingNumberLabel.text = packages[indexPath.row]["tracking_number"] as? String
+        cell.carrierLabel.text = packages[indexPath.row]["carrier"] as? String
         return cell
-        
-        
     }
     
     
@@ -98,13 +87,24 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // print(indexPath.row)
-        // let cell = tableView.cellForRowAt(at: indexPath) as! PackageTableViewCell
-        // let cell = tableView.cellForRowAt(indexPath)
-        // print(cell.dayLabel.text)
-        let cell = tableview.cellForRow(at: indexPath) as! PackageTableViewCell
-        print(cell.dayLabel.text!)
+        // let cell = tableview.cellForRow(at: indexPath) as! PackageTableViewCell
+        // print(cell.trackingNumber.text!)
+        // self.present(TrackViewController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nav = storyboard.instantiateViewController(withIdentifier: "TrackViewController") as! UINavigationController
+        let trackViewController = nav.topViewController as! TrackViewController
+        let trackNum = packages[indexPath.row]["tracking_number"] as? String
+        let carrier = packages[indexPath.row]["carrier"] as? String
+        trackViewController.setTrackingNumAndCarrier(trackNum, carrier)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true)
     }
+    
+    // override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //     if let nav = segue.destination as? UINavigationController, let trackViewController = nav.topViewController as? TrackViewController {
+    //         trackViewController.setTrackingNumAndCarrier(trackNumInput.text, carrierInput.text)
+    //     }
+    // }
 
     /*
     // MARK: - Navigation

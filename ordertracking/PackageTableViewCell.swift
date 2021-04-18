@@ -18,26 +18,32 @@ class PackageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let cellView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.red
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    let trackingNumberLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Tracking number not found."
+        label.textColor = UIColor.black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    let dayLabel: UILabel = {
+    let carrierLabel: UILabel = {
         let label = UILabel()
-        label.text = "Day 1"
-        label.textColor = UIColor.white
+        label.text = "Carrier not found."
+        label.textColor = UIColor.black
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     func setupView() {
+        let cellView = UIView()
         addSubview(cellView)
-        cellView.addSubview(dayLabel)
+        cellView.backgroundColor = UIColor.white
+        cellView.layer.cornerRadius = 10
+        cellView.translatesAutoresizingMaskIntoConstraints = false
+        cellView.addSubview(trackingNumberLabel)
+        cellView.addSubview(carrierLabel)
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
@@ -47,10 +53,13 @@ class PackageTableViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        dayLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        dayLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        // dayLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        // dayLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        // dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
+        trackingNumberLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20).isActive = true
+        trackingNumberLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        carrierLabel.topAnchor.constraint(equalTo: trackingNumberLabel.bottomAnchor, constant: 20).isActive = true
+        carrierLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
     }
     
     override func awakeFromNib() {

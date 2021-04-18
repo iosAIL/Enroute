@@ -8,14 +8,21 @@
 import UIKit
 import Parse
 
-class SubmitInfoViewController: UIViewController {
+class AddPackageViewController: UIViewController {
     
     @IBOutlet weak var trackNumInput: UITextField!
     @IBOutlet weak var carrierInput: UITextField!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var addPackageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //submitButton.layer.cornerRadius = 15
+        cancelButton.layer.cornerRadius = 7
+        addPackageButton.layer.cornerRadius = 7
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @IBAction func cancelAdd(_ sender: Any) {

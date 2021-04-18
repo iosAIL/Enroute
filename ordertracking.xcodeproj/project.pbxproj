@@ -18,7 +18,7 @@
 		D45828CF261FFC500044C735 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45828CD261FFC500044C735 /* Main.storyboard */; };
 		D45828D1261FFC520044C735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45828D0261FFC520044C735 /* Assets.xcassets */; };
 		D45828D4261FFC520044C735 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45828D2261FFC520044C735 /* LaunchScreen.storyboard */; };
-		D45828E026203DA90044C735 /* SubmitInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45828DF26203DA90044C735 /* SubmitInfoViewController.swift */; };
+		D45828E026203DA90044C735 /* AddPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45828DF26203DA90044C735 /* AddPackageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		D45828D0261FFC520044C735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D45828D3261FFC520044C735 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D45828D5261FFC520044C735 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D45828DF26203DA90044C735 /* SubmitInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitInfoViewController.swift; sourceTree = "<group>"; };
+		D45828DF26203DA90044C735 /* AddPackageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPackageViewController.swift; sourceTree = "<group>"; };
 		E80FCA3D790171CF8EDBDF6D /* Pods-ordertracking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ordertracking.debug.xcconfig"; path = "Target Support Files/Pods-ordertracking/Pods-ordertracking.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,15 +92,15 @@
 			children = (
 				D45828C7261FFC500044C735 /* AppDelegate.swift */,
 				D45828C9261FFC500044C735 /* SceneDelegate.swift */,
-				D45828CB261FFC500044C735 /* TrackViewController.swift */,
 				D45828CD261FFC500044C735 /* Main.storyboard */,
-				D45828DF26203DA90044C735 /* SubmitInfoViewController.swift */,
 				D45828D0261FFC520044C735 /* Assets.xcassets */,
 				D45828D2261FFC520044C735 /* LaunchScreen.storyboard */,
 				D45828D5261FFC520044C735 /* Info.plist */,
+				D45828DF26203DA90044C735 /* AddPackageViewController.swift */,
 				1B943526262BC7DA005D2090 /* LoginViewController.swift */,
-				1B943529262BD4CE005D2090 /* FeedViewController.swift */,
 				D41B344B262BDDF800E006EC /* PackageTableViewCell.swift */,
+				1B943529262BD4CE005D2090 /* FeedViewController.swift */,
+				D45828CB261FFC500044C735 /* TrackViewController.swift */,
 				D41B3443262BDD4A00E006EC /* RouteCell.swift */,
 			);
 			path = ordertracking;
@@ -221,7 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B943527262BC7DA005D2090 /* LoginViewController.swift in Sources */,
-				D45828E026203DA90044C735 /* SubmitInfoViewController.swift in Sources */,
+				D45828E026203DA90044C735 /* AddPackageViewController.swift in Sources */,
 				D45828CC261FFC500044C735 /* TrackViewController.swift in Sources */,
 				D41B3444262BDD4A00E006EC /* RouteCell.swift in Sources */,
 				D41B344C262BDDF800E006EC /* PackageTableViewCell.swift in Sources */,
