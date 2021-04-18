@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class SubmitInfoViewController: UIViewController {
     
@@ -19,8 +20,21 @@ class SubmitInfoViewController: UIViewController {
     
     
     @IBAction func onSubmitButton(_ sender: Any) {
+        let package = PFObject(className: "Packages")
+                
+        package["author"] = PFUser.current()
+        package["tracking_number"] = trackNumInput.text!
+        package["carrier"] = carrierInput.text!
         
-        
+        package.saveInBackground { (success, error) in
+            if success {
+                self.dismiss(animated: true, completion: nil)
+                print("saved!")
+            } else {
+                print("error!")
+            }
+        }
+       
     }
     
     
