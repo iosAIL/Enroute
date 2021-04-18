@@ -86,12 +86,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694.20289855072474" y="126.35869565217392"/>
+            <point key="canvasLocation" x="1719" y="126"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="2l3-y3-EX7">
             <objects>
-                <viewController id="7ku-f4-eTL" customClass="LoginViewController" customModule="ordertracking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="7ku-f4-eTL" customClass="LoginViewController" customModule="ordertracking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jJe-EJ-xA9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,7 +162,7 @@
                     <connections>
                         <outlet property="passwordField" destination="6nQ-Xg-LjV" id="EDD-tg-xh2"/>
                         <outlet property="usernameField" destination="9eq-jr-NyT" id="pHy-CH-u7V"/>
-                        <segue destination="HLb-Q0-tte" kind="presentation" identifier="loginSegue" id="WgZ-Zl-6jk"/>
+                        <segue destination="lHI-Gq-Slq" kind="presentation" identifier="loginSegue" id="0Gb-sj-AMx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmj-cX-EGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -229,7 +229,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="204-LU-S65" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1310.144927536232" y="125.54347826086958"/>
+            <point key="canvasLocation" x="146" y="126"/>
+        </scene>
+        <!--Packages-->
+        <scene sceneID="qvB-kG-dmN">
+            <objects>
+                <tableViewController id="aR4-IH-qTy" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PkR-f1-vMm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="173" id="8KV-xF-64n">
+                                <rect key="frame" x="0.0" y="28" width="414" height="173"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8KV-xF-64n" id="ugm-yR-qsj">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="173"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aR4-IH-qTy" id="036-s7-CDM"/>
+                            <outlet property="delegate" destination="aR4-IH-qTy" id="dtt-J3-dLa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Packages" id="GNa-bp-yLb">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="Zcc-SB-0tN">
+                            <connections>
+                                <segue destination="HLb-Q0-tte" kind="presentation" id="lfM-P4-D8E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IJz-h2-7Qy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-572.46376811594212" y="125.54347826086958"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="U5Z-MH-zc2">
+            <objects>
+                <navigationController id="lHI-Gq-Slq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XpV-Uq-6o3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aR4-IH-qTy" kind="relationship" relationship="rootViewController" id="bDq-nq-PK3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uyu-qf-FTt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1299" y="126"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uep-iM-cxe">
@@ -247,7 +298,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79X-JX-etQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-213.04347826086959" y="126.5625"/>
+            <point key="canvasLocation" x="916" y="126"/>
         </scene>
     </scenes>
     <resources>
