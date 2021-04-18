@@ -37,7 +37,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         query.findObjectsInBackground { (packages, error) in
             if packages != nil {
                 self.packages = packages!
-                print(packages)
+                print(packages!)
                 self.tableview.reloadData()
             }
         
