@@ -81,6 +81,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // print(indexPath.row)
+        // let cell = tableView.cellForRowAt(at: indexPath) as! PackageTableViewCell
+        // let cell = tableView.cellForRowAt(indexPath)
+        // print(cell.dayLabel.text)
+        let cell = tableview.cellForRow(at: indexPath) as! PackageTableViewCell
+        print(cell.dayLabel.text!)
+    }
 
     /*
     // MARK: - Navigation

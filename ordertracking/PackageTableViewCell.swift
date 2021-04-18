@@ -51,7 +51,6 @@ class PackageTableViewCell: UITableViewCell {
         dayLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
         dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
-        
     }
     
     override func awakeFromNib() {
@@ -61,8 +60,5 @@ class PackageTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }
