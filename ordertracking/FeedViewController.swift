@@ -9,6 +9,8 @@ import UIKit
 import Parse
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+
+    
    
     
     let tableview: UITableView = {
@@ -39,7 +41,26 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         }
     }
-    
+    //delete package
+    func tableView(_ tableView: UITableView, commit editingStyle:UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let objId=(packages[indexPath.row].objectId)!
+            var query = PFQuery(className:"Packages")
+            query.getObjectInBackground(withId: objId) {
+            (parseObject, error) in
+               if error != nil {
+                 print(error)
+               } else if parseObject != nil {
+                self.tableview.beginUpdates()
+                self.packages.remove(at: indexPath.row)
+                self.tableview.deleteRows(at: [indexPath], with: .fade)
+                parseObject?.deleteInBackground()
+                self.tableview.endUpdates()
+                    
+               }
+             }
+        }
+    }
     
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
