@@ -64,7 +64,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
-        self.dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        loginViewController.modalPresentationStyle = .fullScreen
+        self.present(loginViewController, animated: true)
     }
     
     func setupTableView() {
