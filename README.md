@@ -29,15 +29,18 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 
 **Required Must-have Stories**
 
-* User can add a package using tracking id
-* User can view latest location of package
-* User will receive a notification when the package is delivered
+- [X] User can add a package using tracking id
+- [X] User can view latest location of package
+- [ ] User will receive a notification when the package is delivered
 
 **Optional Nice-to-have Stories**
 
-* User can sort packages by estimated arrival time
-* User can remove a package from the list
-* User can view past locations of package and its arrival times at those locations
+- [ ] User can sort packages by estimated arrival time
+- [X] User can remove a package from the list
+- [X] User can view past locations of package and its arrival times at those locations
+
+### Milestone 1 demo
+<img src='http://g.recordit.co/VLTLTC6tXQ.gif' />
 
 ### 2. Screen Archetypes
 
