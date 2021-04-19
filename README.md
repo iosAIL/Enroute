@@ -39,6 +39,9 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 - [X] User can remove a package from the list
 - [X] User can view past locations of package and its arrival times at those locations
 
+### Milestone 1 demo
+<img src='http://g.recordit.co/VLTLTC6tXQ.gif' />
+
 ### 2. Screen Archetypes
 
 * Login
