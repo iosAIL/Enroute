@@ -14,11 +14,16 @@ class AddPackageViewController: UIViewController {
     @IBOutlet weak var carrierInput: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addPackageButton: UIButton!
+    @IBOutlet weak var nameInput: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cancelButton.layer.cornerRadius = 7
         addPackageButton.layer.cornerRadius = 7
+        nameInput.placeholder = "Package Enroute"
+        trackNumInput.placeholder = "123456789"
+        carrierInput.placeholder = "fedex"
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -35,6 +40,7 @@ class AddPackageViewController: UIViewController {
         package["author"] = PFUser.current()
         package["tracking_number"] = trackNumInput.text!
         package["carrier"] = carrierInput.text!
+        package["name"] = nameInput.text!.isEmpty ? "Package Enroute" : nameInput.text!
         
         package.saveInBackground { (success, error) in
             if success {
