@@ -36,6 +36,15 @@ class PackageTableViewCell: UITableViewCell {
         return label
     }()
     
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Untitled"
+        label.textColor = UIColor.black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     func setupView() {
         let cellView = UIView()
         addSubview(cellView)
@@ -44,6 +53,7 @@ class PackageTableViewCell: UITableViewCell {
         cellView.translatesAutoresizingMaskIntoConstraints = false
         cellView.addSubview(trackingNumberLabel)
         cellView.addSubview(carrierLabel)
+        cellView.addSubview(nameLabel)
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
@@ -56,7 +66,9 @@ class PackageTableViewCell: UITableViewCell {
         // dayLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
         // dayLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         // dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        trackingNumberLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        trackingNumberLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
         trackingNumberLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
         carrierLabel.topAnchor.constraint(equalTo: trackingNumberLabel.bottomAnchor, constant: 10).isActive = true
         carrierLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true

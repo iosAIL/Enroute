@@ -45,11 +45,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, commit editingStyle:UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let objId=(packages[indexPath.row].objectId)!
-            var query = PFQuery(className:"Packages")
+            let query = PFQuery(className:"Packages")
             query.getObjectInBackground(withId: objId) {
             (parseObject, error) in
                if error != nil {
-                 print(error)
+                print(error!)
                } else if parseObject != nil {
                 self.tableview.beginUpdates()
                 self.packages.remove(at: indexPath.row)
@@ -102,6 +102,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         // cell.trackingNumber.text = "Tracking Number: \(packages[indexPath.row]["tracking_number"] as! String)"
         cell.trackingNumberLabel.text = packages[indexPath.row]["tracking_number"] as? String
         cell.carrierLabel.text = packages[indexPath.row]["carrier"] as? String
+        cell.nameLabel.text = packages[indexPath.row]["name"] as? String
         return cell
     }
     
