@@ -9,10 +9,10 @@ import UIKit
 import Parse
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-    let tableview: UITableView = {
-        let tv = UITableView()
-        return tv
-    }()
+    
+    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var expectingLabel: UILabel!
     
     var packages = [PFObject]()
     var currentUser = PFUser.current()
@@ -21,7 +21,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        userLabel.text = currentUser?.username
+        expectingLabel.text = "Expecting " + String(packages.count) + " packages"
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,7 +73,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(loginViewController, animated: true)
     }
     
-    func setupTableView() {
+    /*func setupTableView() {
         tableview.delegate = self
         tableview.dataSource = self
         
@@ -86,7 +91,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
         ])
-    }
+    }*/
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,13 +100,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PackageTableViewCell
-        cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        //let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PackageTableViewCell
+        let cell = tableview.dequeueReusableCell(withIdentifier: "PackageTableViewCell", for: indexPath) as! PackageTableViewCell
         
         self.trackingNum = packages[indexPath.row]["tracking_number"] as! String
         self.carrier = packages[indexPath.row]["carrier"] as! String
         cell.trackingNumberLabel.text = self.trackingNum
         cell.carrierLabel.text = self.carrier
+        cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
         
         sendRequest() { data in
             DispatchQueue.main.async {
@@ -157,7 +163,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let session = URLSession.shared
             session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
                 if (error != nil) {
-                    print(error)
+                    print(error!)
                 } else if let data = data {
                     let httpResponse = response as? HTTPURLResponse
                     // print(httpResponse)

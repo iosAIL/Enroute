@@ -44,7 +44,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
             let session = URLSession.shared
             session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
                 if (error != nil) {
-                    print(error)
+                    print(error!)
                 } else if let data = data {
                     let httpResponse = response as? HTTPURLResponse
                     // print(httpResponse)

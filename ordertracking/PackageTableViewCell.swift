@@ -8,7 +8,14 @@
 import UIKit
 
 class PackageTableViewCell: UITableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var trackingNumberLabel: UILabel!
+    @IBOutlet weak var carrierLabel: UILabel!
+    @IBOutlet weak var statusImage: UIImageView!
+    
+    /*override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
@@ -86,7 +93,7 @@ class PackageTableViewCell: UITableViewCell {
         statusLabel.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: 20).isActive = true
         statusLabel.adjustsFontSizeToFitWidth = true
         statusLabel.numberOfLines = 0
-    }
+    }*/
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -97,3 +104,4 @@ class PackageTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 }
+
