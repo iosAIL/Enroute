@@ -31,19 +31,19 @@
                                                     <rect key="frame" x="10" y="10" width="394" height="129"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkpoint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tt-ZW-kmD">
-                                                            <rect key="frame" x="10" y="96" width="90" height="23.333333333333329"/>
+                                                            <rect key="frame" x="10" y="98.666666666666671" width="90" height="23.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUQ-7l-r64">
-                                                            <rect key="frame" x="10.000000000000004" y="66.666666666666671" width="53.333333333333343" height="23.333333333333329"/>
+                                                            <rect key="frame" x="10.000000000000004" y="69.333333333333329" width="53.333333333333343" height="23.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e9-Pg-sb7">
-                                                            <rect key="frame" x="10" y="37.333333333333336" width="35" height="23.333333333333336"/>
+                                                            <rect key="frame" x="10" y="40" width="35" height="23.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -55,13 +55,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cri-im-EhY">
-                                                            <rect key="frame" x="9.9999999999999964" y="7.9999999999999982" width="48.666666666666657" height="23.333333333333329"/>
-                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                                            <rect key="frame" x="10.000000000000004" y="8" width="54.333333333333343" height="26"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" red="0.91764705882352937" green="0.76078431372549016" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="cri-im-EhY" firstAttribute="top" secondItem="LfT-JY-FL9" secondAttribute="top" constant="8" id="0Cm-wK-yjH"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6tt-ZW-kmD" secondAttribute="bottom" constant="6" id="6df-bk-WM7"/>
@@ -77,7 +77,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="5"/>
+                                                            <integer key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>

@@ -140,7 +140,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         let date = locations["Date"] as! String
         let details = locations["Details"] as! String
         let checkpointStatus = locations["checkpoint_status"] as! String
-        cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        cell.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         
         if !statusDescription.isEmpty {
             cell.statusDescription.text = statusDescription
