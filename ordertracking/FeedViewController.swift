@@ -31,7 +31,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        //print(packages.count)
         let query = PFQuery(className:"Packages")
         query.whereKey("author", equalTo: currentUser!)
         query.limit = 20
@@ -187,7 +187,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         return completion("Package not found.")
                     }
                     print(lastEvent)
-                    let lastUpdateTime = items[0]["lastUpdateTime"] as! String
+                    //let lastUpdateTime = items[0]["lastUpdateTime"] as! String
                     // print(lastUpdateTime)
                     let originInfo = items[0]["origin_info"] as! [String:Any]
                     // print(originInfo)
@@ -198,7 +198,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     let status = trackInfo[0]["checkpoint_status"] as! String
                     let time = trackInfo[0]["Date"]  as! String
                     
-                    returnData = "\(status)   \(time)"
+                    let dateFormatterGet = DateFormatter()
+                    dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+                    let dateFormatterPrint = DateFormatter()
+                    dateFormatterPrint.dateFormat = "MMM dd,yyyy, HH:mm"
+                    
+                    let finalDate = dateFormatterPrint.string(from: dateFormatterGet.date(from: time)!)
+                    
+                    returnData = "\(status.localizedCapitalized) \(finalDate)"
                     
                     // print(trackInfo)
                     // returnData = trackInfo
