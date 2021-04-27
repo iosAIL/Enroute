@@ -121,7 +121,8 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         tableView.dataSource = self
         tableView.delegate = self
-        let newButton = UIBarButtonItem(title: "Close", style: UIBarButtonItem.Style.plain, target: self, action: #selector(TrackViewController.close(sender:)))
+        let newButton = UIBarButtonItem(title: "Close",style: UIBarButtonItem.Style.plain, target: self, action: #selector(TrackViewController.close(sender:)))
+        newButton.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItem = newButton
     }
     
@@ -142,11 +143,17 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         let checkpointStatus = locations["checkpoint_status"] as! String
         cell.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd, yyyy, HH:mm"
+        let datefinal = dateFormatterPrint.string(from: dateFormatterGet.date(from: date)!)
+        
         if !statusDescription.isEmpty {
             cell.statusDescription.text = statusDescription
         }
         if !date.isEmpty {
-            cell.date.text = date
+            cell.date.text = datefinal
         }
         if !details.isEmpty {
             cell.details.text = details

@@ -25,8 +25,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         expectingLabel.text = "Expecting " + String(packages.count) + " packages"
         tableview.delegate = self
         tableview.dataSource = self
-        tableview.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
-        self.view.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        //tableview.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        //self.view.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        tableview.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,7 +109,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.carrier = packages[indexPath.row]["carrier"] as! String
         cell.trackingNumberLabel.text = self.trackingNum
         cell.carrierLabel.text = self.carrier
-        cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        //cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        cell.backgroundColor = #colorLiteral(red: 0.05710693449, green: 0.1802713573, blue: 0.2454774082, alpha: 1)
         
         sendRequest() { data in
             DispatchQueue.main.async {
