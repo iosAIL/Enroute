@@ -8,7 +8,6 @@
 import UIKit
 
 class PackageTableViewCell: UITableViewCell {
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -45,15 +44,25 @@ class PackageTableViewCell: UITableViewCell {
         return label
     }()
     
+    let statusLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Loading status..."
+        label.textColor = UIColor.black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     func setupView() {
         let cellView = UIView()
         addSubview(cellView)
         cellView.backgroundColor = UIColor.white
         cellView.layer.cornerRadius = 10
         cellView.translatesAutoresizingMaskIntoConstraints = false
-        cellView.addSubview(trackingNumberLabel)
         cellView.addSubview(carrierLabel)
+        cellView.addSubview(trackingNumberLabel)
         cellView.addSubview(nameLabel)
+        cellView.addSubview(statusLabel)
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
@@ -68,10 +77,15 @@ class PackageTableViewCell: UITableViewCell {
         // dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
-        trackingNumberLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
-        trackingNumberLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
-        carrierLabel.topAnchor.constraint(equalTo: trackingNumberLabel.bottomAnchor, constant: 10).isActive = true
+        carrierLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
         carrierLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        trackingNumberLabel.topAnchor.constraint(equalTo: carrierLabel.topAnchor).isActive = true
+        trackingNumberLabel.leftAnchor.constraint(equalTo: carrierLabel.rightAnchor, constant: 10).isActive = true
+        statusLabel.topAnchor.constraint(equalTo: carrierLabel.bottomAnchor, constant: 5).isActive = true
+        statusLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        statusLabel.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: 20).isActive = true
+        statusLabel.adjustsFontSizeToFitWidth = true
+        statusLabel.numberOfLines = 0
     }
     
     override func awakeFromNib() {

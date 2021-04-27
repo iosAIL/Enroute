@@ -9,10 +9,6 @@ import UIKit
 import Parse
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
-    
-   
-    
     let tableview: UITableView = {
         let tv = UITableView()
         return tv
@@ -20,6 +16,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var packages = [PFObject]()
     var currentUser = PFUser.current()
+    var trackingNum = "";
+    var carrier = "";
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,10 +97,21 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PackageTableViewCell
         cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
+        
+        self.trackingNum = packages[indexPath.row]["tracking_number"] as! String
+        self.carrier = packages[indexPath.row]["carrier"] as! String
+        cell.trackingNumberLabel.text = self.trackingNum
+        cell.carrierLabel.text = self.carrier
+        
+        sendRequest() { data in
+            DispatchQueue.main.async {
+                cell.statusLabel.text = data
+            }
+        }
+        
         // cell.trackingNumber.text = "Tracking Number: \(packages[indexPath.row]["tracking_number"] as! String)"
-        cell.trackingNumberLabel.text = packages[indexPath.row]["tracking_number"] as? String
-        cell.carrierLabel.text = packages[indexPath.row]["carrier"] as? String
         cell.nameLabel.text = packages[indexPath.row]["name"] as? String
+        
         return cell
     }
     
@@ -123,6 +132,74 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         trackViewController.setTrackingNumAndCarrier(trackNum, carrier)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true)
+    }
+    
+    func sendRequest(completion: @escaping (String)->()) {
+        var returnData = "Loading status..."
+        let headers = [
+            "content-type": "application/json",
+            "x-rapidapi-key": "c6e12970f5msh258f9543aba75efp155d01jsn8923c7e612e6",
+            "x-rapidapi-host": "order-tracking.p.rapidapi.com"
+        ]
+        let parameters = [
+            "tracking_number": self.trackingNum,
+            "carrier_code": self.carrier
+        ] as [String : Any]
+        do {
+            let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
+            let request = NSMutableURLRequest(url: NSURL(string: "https://order-tracking.p.rapidapi.com/trackings/realtime")! as URL,
+                                              cachePolicy: .useProtocolCachePolicy,
+                                              timeoutInterval: 10.0)
+            request.httpMethod = "POST"
+            request.allHTTPHeaderFields = headers
+            request.httpBody = postData as Data
+            let session = URLSession.shared
+            session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+                if (error != nil) {
+                    print(error)
+                } else if let data = data {
+                    let httpResponse = response as? HTTPURLResponse
+                    // print(httpResponse)
+                    // let trackingData = String(decoding: data!, as: UTF8.self)
+                    // print(trackingData)
+                    // if (trackingData != nil) {
+                    //     returnValue = trackingData
+                    // }
+                    // print(data)
+                    let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
+                    // print(dataDictionary)
+                    let packageInfo = dataDictionary["data"] as! [String : Any]
+                    // print(packageInfo)
+                    if packageInfo["items"] == nil {
+                        return completion("Package not found.")
+                    }
+                    let items = packageInfo["items"] as! [[String:Any]]
+                    // print(items)
+                    let lastEvent = items[0]["lastEvent"] as! String
+                    if (lastEvent.count <= 0) {
+                        return completion("Package not found.")
+                    }
+                    print(lastEvent)
+                    let lastUpdateTime = items[0]["lastUpdateTime"] as! String
+                    // print(lastUpdateTime)
+                    let originInfo = items[0]["origin_info"] as! [String:Any]
+                    // print(originInfo)
+                    let trackInfo = originInfo["trackinfo"] as! [[String:Any]]
+                    
+                    returnData = trackInfo[0]["checkpoint_status"] as! String
+                    
+                    // print(trackInfo)
+                    // returnData = trackInfo
+                    // returnData = lastEvent
+                    // returnData["lastEvent"] = lastEvent
+                    // returnData["lastUpdateTime"] = lastUpdateTime
+                    // print(returnData)
+                    return completion(returnData)
+                }
+            }).resume()
+        } catch {
+            print(error)
+        }
     }
     
     // override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
