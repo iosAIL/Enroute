@@ -130,6 +130,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let trackNum = packages[indexPath.row]["tracking_number"] as? String
         let carrier = packages[indexPath.row]["carrier"] as? String
         trackViewController.setTrackingNumAndCarrier(trackNum, carrier)
+        trackViewController.packageName = packages[indexPath.row]["name"] as! String
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true)
     }

@@ -14,6 +14,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     var trackInfo = [[String:Any]]()
     var trackingNum = "";
+    var packageName = "";
     var carrier = "";
     
     func setTrackingNumAndCarrier(_ trackNum: String?, _ carrier: String?) {
@@ -111,7 +112,8 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 self.trackInfo = data;
                 self.tableView.reloadData()
-                self.title = "Tracking Number: \(self.trackingNum)"
+                // self.title = "Tracking Number: \(self.trackingNum)"
+                self.title = self.packageName
             }
             // if (self.trackInfo.count <= 0) {
             //     self.title = "No package found."
