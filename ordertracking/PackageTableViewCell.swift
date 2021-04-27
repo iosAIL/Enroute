@@ -77,11 +77,11 @@ class PackageTableViewCell: UITableViewCell {
         // dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 20).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
-        carrierLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        carrierLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
         carrierLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
         trackingNumberLabel.topAnchor.constraint(equalTo: carrierLabel.topAnchor).isActive = true
         trackingNumberLabel.leftAnchor.constraint(equalTo: carrierLabel.rightAnchor, constant: 10).isActive = true
-        statusLabel.topAnchor.constraint(equalTo: carrierLabel.bottomAnchor, constant: 5).isActive = true
+        statusLabel.topAnchor.constraint(equalTo: carrierLabel.bottomAnchor, constant: 10).isActive = true
         statusLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
         statusLabel.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: 20).isActive = true
         statusLabel.adjustsFontSizeToFitWidth = true

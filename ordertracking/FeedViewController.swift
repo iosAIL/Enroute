@@ -187,7 +187,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // print(originInfo)
                     let trackInfo = originInfo["trackinfo"] as! [[String:Any]]
                     
-                    returnData = trackInfo[0]["checkpoint_status"] as! String
+                    // returnData = trackInfo[0]["checkpoint_status"] as! String
+                    
+                    let status = trackInfo[0]["checkpoint_status"] as! String
+                    let time = trackInfo[0]["Date"]  as! String
+                    
+                    returnData = "\(status)   \(time)"
                     
                     // print(trackInfo)
                     // returnData = trackInfo
