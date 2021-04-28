@@ -143,11 +143,23 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         let checkpointStatus = locations["checkpoint_status"] as! String
         cell.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateFormatterGet1 = DateFormatter()
+        dateFormatterGet1.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateFormatterGet2 = DateFormatter()
+        dateFormatterGet2.dateFormat = "yyyy-MM-dd HH:mm"
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM dd, yyyy, HH:mm"
-        let datefinal = dateFormatterPrint.string(from: dateFormatterGet.date(from: date)!)
+        
+        var finaldate = Date()
+        if (dateFormatterGet1.date(from: date) != nil) {
+            finaldate = dateFormatterGet1.date(from: date)!
+        } else if (dateFormatterGet2.date(from: date) != nil) {
+            finaldate = dateFormatterGet2.date(from: date)!
+        } else {
+           print("There was an error decoding the string")
+        }
+        
+        let datefinal = dateFormatterPrint.string(from: finaldate)
         
         if !statusDescription.isEmpty {
             cell.statusDescription.text = statusDescription

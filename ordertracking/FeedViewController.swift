@@ -201,15 +201,27 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     let status = trackInfo[0]["checkpoint_status"] as! String
                     let time = trackInfo[0]["Date"]  as! String
                     
-                    let dateFormatterGet = DateFormatter()
-                    dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let dateFormatterGet1 = DateFormatter()
+                    dateFormatterGet1.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    
+                    let dateFormatterGet2 = DateFormatter()
+                    dateFormatterGet2.dateFormat = "yyyy-MM-dd HH:mm"
 
                     let dateFormatterPrint = DateFormatter()
-                    dateFormatterPrint.dateFormat = "MMM dd,yyyy, HH:mm"
+                    dateFormatterPrint.dateFormat = "MMM d, h:mm a"
                     
-                    let finalDate = dateFormatterPrint.string(from: dateFormatterGet.date(from: time)!)
                     
-                    returnData = "\(status.localizedCapitalized) \(finalDate)"
+                    var finaldate = Date()
+                    if (dateFormatterGet1.date(from: time) != nil) {
+                        finaldate = dateFormatterGet1.date(from: time)!
+                    } else if (dateFormatterGet2.date(from: time) != nil) {
+                        finaldate = dateFormatterGet2.date(from: time)!
+                    } else {
+                       print("There was an error decoding the string")
+                    }
+                    
+                    returnData = "\(status.localizedCapitalized) \(dateFormatterPrint.string(from: finaldate))"
+                    //returnData = "\(status.localizedCapitalized) \(finaldate)"
                     
                     // print(trackInfo)
                     // returnData = trackInfo
