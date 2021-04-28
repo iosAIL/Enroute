@@ -19,8 +19,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var trackingNum = "";
     var carrier = "";
     
+    
+    //pull to refresh NEED UPDATING PKG TO TEST
+    var refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableview.refreshControl = refreshControl
+        
         userLabel.text = currentUser?.username
         expectingLabel.text = "Expecting " + String(packages.count) + " packages"
         tableview.delegate = self
@@ -29,6 +37,24 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         //self.view.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
         tableview.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         self.view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        print("refreshing")
+        
+        let query = PFQuery(className:"Packages")
+        query.whereKey("author", equalTo: currentUser!)
+        query.limit = 20
+        
+        query.findObjectsInBackground { (packages, error) in
+            if packages != nil {
+                self.packages = packages!
+                self.tableview.reloadData()
+            }
+        
+        }
+        
+        refreshControl.endRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +87,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.tableview.deleteRows(at: [indexPath], with: .fade)
                 parseObject?.deleteInBackground()
                 self.tableview.endUpdates()
-                    
                }
              }
         }
@@ -143,6 +168,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true)
     }
+    
+
+    
     
     func sendRequest(completion: @escaping (String)->()) {
         var returnData = "Loading status..."

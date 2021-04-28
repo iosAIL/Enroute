@@ -16,7 +16,6 @@ class AddPackageViewController: UIViewController {
     @IBOutlet weak var addPackageButton: UIButton!
     @IBOutlet weak var nameInput: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         cancelButton.layer.cornerRadius = 7
