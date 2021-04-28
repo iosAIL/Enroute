@@ -3,6 +3,7 @@
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -61,7 +62,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.91764705882352937" green="0.76078431372549016" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="Orange"/>
                                                     <constraints>
                                                         <constraint firstItem="cri-im-EhY" firstAttribute="top" secondItem="LfT-JY-FL9" secondAttribute="top" constant="8" id="0Cm-wK-yjH"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6tt-ZW-kmD" secondAttribute="bottom" constant="6" id="6df-bk-WM7"/>
@@ -119,6 +120,28 @@
             </objects>
             <point key="canvasLocation" x="2626.0869565217395" y="125.54347826086958"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="zka-Jb-Quc">
+            <objects>
+                <viewController id="NyC-pM-CXW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zQq-Ix-pNK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="paperplane.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gHc-Es-nHy">
+                                <rect key="frame" x="60" y="222.66666666666674" width="295" height="292"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="Blue"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DgU-tx-U6b"/>
+                        <color key="backgroundColor" name="Orange"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="193-rT-sAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3830.434782608696" y="138.58695652173915"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="2l3-y3-EX7">
             <objects>
@@ -167,7 +190,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-h3-aah">
                                 <rect key="frame" x="229" y="566" width="142" height="50"/>
-                                <color key="backgroundColor" red="0.073654591197194225" green="0.24088549056484862" blue="0.33359771573604058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.1143150404" green="0.2416146696" blue="0.32828852530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="49D-e9-3lM"/>
                                     <constraint firstAttribute="width" constant="142" id="wxf-d2-Beb"/>
@@ -215,7 +238,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pjD-4Y-4ng"/>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.76078431369999999" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Orange"/>
                         <constraints>
                             <constraint firstItem="sC6-h3-aah" firstAttribute="centerY" secondItem="jJe-EJ-xA9" secondAttribute="centerY" constant="223" id="5gF-ZF-651"/>
                             <constraint firstItem="NQF-BK-cQi" firstAttribute="centerY" secondItem="jJe-EJ-xA9" secondAttribute="centerY" constant="98.5" id="7zC-8X-bV7"/>
@@ -316,7 +339,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.91764705882352937" green="0.76078431372549016" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="Orange"/>
                                                     <constraints>
                                                         <constraint firstItem="RCs-wR-ju0" firstAttribute="leading" secondItem="bK1-NT-yHc" secondAttribute="trailing" constant="5" id="0jQ-BL-fTp"/>
                                                         <constraint firstAttribute="trailing" secondItem="eK8-ac-tGz" secondAttribute="trailing" constant="5" id="1IJ-g1-rd7"/>
@@ -499,7 +522,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jWP-RM-9HC"/>
-                        <color key="backgroundColor" red="0.91764705882352937" green="0.76078431372549016" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Orange"/>
                         <constraints>
                             <constraint firstItem="FcI-Mc-dDz" firstAttribute="top" secondItem="0bo-Dz-2Zf" secondAttribute="bottom" constant="8" symbolic="YES" id="2ej-D1-c8F"/>
                             <constraint firstItem="IIA-v5-746" firstAttribute="top" secondItem="Uac-Zh-xVE" secondAttribute="bottom" constant="47" id="323-Pu-TXO"/>
@@ -585,6 +608,12 @@
     <resources>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
+        <namedColor name="Blue">
+            <color red="0.11372549019607843" green="0.24313725490196078" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Orange">
+            <color red="0.89803921568627454" green="0.75686274509803919" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
