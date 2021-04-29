@@ -15,6 +15,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var expectingLabel: UILabel!
     
     var packages = [PFObject]()
+    // var statusForTrackingNum = ""
+    var statusForTrackingNum = [String: String]()
     var currentUser = PFUser.current()
     var trackingNum = "";
     var carrier = "";
@@ -37,6 +39,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         //self.view.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
         tableview.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         self.view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        
+        let query = PFQuery(className:"Packages")
+        query.whereKey("author", equalTo: currentUser!)
+        query.limit = 20
+        
+        query.findObjectsInBackground { (packages, error) in
+            if packages != nil {
+                self.packages = packages!
+            }
+            self.refreshStatusOfAllPackages()
+        }
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -49,29 +62,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         query.findObjectsInBackground { (packages, error) in
             if packages != nil {
                 self.packages = packages!
-                self.tableview.reloadData()
+                self.refreshStatusOfAllPackages()
             }
-        
         }
         
         refreshControl.endRefreshing()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //print(packages.count)
-        let query = PFQuery(className:"Packages")
-        query.whereKey("author", equalTo: currentUser!)
-        query.limit = 20
-        
-        query.findObjectsInBackground { (packages, error) in
-            if packages != nil {
-                self.packages = packages!
-                self.tableview.reloadData()
-            }
-        
-        }
-    }
     //delete package
     func tableView(_ tableView: UITableView, commit editingStyle:UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
@@ -100,31 +97,29 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(loginViewController, animated: true)
     }
     
-    /*func setupTableView() {
-        tableview.delegate = self
-        tableview.dataSource = self
-        
-        tableview.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
-        tableview.translatesAutoresizingMaskIntoConstraints = false
-        tableview.separatorStyle = UITableViewCell.SeparatorStyle.none
-        
-        tableview.register(PackageTableViewCell.self, forCellReuseIdentifier: "cellId")
-        
-        view.addSubview(tableview)
-        
-        NSLayoutConstraint.activate([
-            tableview.topAnchor.constraint(equalTo: self.view.topAnchor),
-            tableview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
-        ])
-    }*/
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return packages.count
     }
     
+    func refreshStatusOfAllPackages() {
+        for package in self.packages {
+            let trackingNum = package["tracking_number"] as! String
+            self.statusForTrackingNum[trackingNum] = "Loading status..."
+        }
+        self.tableview.reloadData()
+        
+        DispatchQueue.main.async {
+            for package in self.packages {
+                let trackingNum = package["tracking_number"] as! String
+                let carrier = package["carrier"] as! String
+                self.sendRequest(trackingNum, carrier) { data in
+                    self.statusForTrackingNum[trackingNum] = data
+                    self.tableview.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+                    print(self.statusForTrackingNum)
+                }
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PackageTableViewCell
@@ -136,14 +131,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.carrierLabel.text = self.carrier
         //cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
         cell.backgroundColor = #colorLiteral(red: 0.05710693449, green: 0.1802713573, blue: 0.2454774082, alpha: 1)
-        
-        sendRequest() { data in
-            DispatchQueue.main.async {
-                cell.statusLabel.text = data
-            }
-        }
-        
-        // cell.trackingNumber.text = "Tracking Number: \(packages[indexPath.row]["tracking_number"] as! String)"
+        cell.statusLabel.text = self.statusForTrackingNum[self.trackingNum]
         cell.nameLabel.text = packages[indexPath.row]["name"] as? String
         
         return cell
@@ -172,7 +160,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     
-    func sendRequest(completion: @escaping (String)->()) {
+    func sendRequest(_ trackingNum: String, _ carrier: String, completion: @escaping (String)->()) {
         var returnData = "Loading status..."
         let headers = [
             "content-type": "application/json",
@@ -180,8 +168,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             "x-rapidapi-host": "order-tracking.p.rapidapi.com"
         ]
         let parameters = [
-            "tracking_number": self.trackingNum,
-            "carrier_code": self.carrier
+            "tracking_number": trackingNum,
+            "carrier_code": carrier
         ] as [String : Any]
         do {
             let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -217,7 +205,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if (lastEvent.count <= 0) {
                         return completion("Package not found.")
                     }
-                    print(lastEvent)
+                    // print(lastEvent)
                     //let lastUpdateTime = items[0]["lastUpdateTime"] as! String
                     // print(lastUpdateTime)
                     let originInfo = items[0]["origin_info"] as! [String:Any]
@@ -257,6 +245,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // returnData["lastEvent"] = lastEvent
                     // returnData["lastUpdateTime"] = lastUpdateTime
                     // print(returnData)
+                    
+                    // print(self.statusForTrackingNum)
+                    
                     return completion(returnData)
                 }
             }).resume()
