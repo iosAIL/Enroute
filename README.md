@@ -46,7 +46,7 @@ GitHub cut off part of GIF I think, here is full GIF showing persistence of logi
 https://recordit.co/VLTLTC6tXQ
 
 ### Milestone 2 demo
-<img src='http://g.recordit.co/ZeX97D6fAb.gif' />
+<img src='http://g.recordit.co/2o84abJsc4.gif' />
 
 ### 2. Screen Archetypes
 
