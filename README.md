@@ -1,4 +1,5 @@
 # Enroute
+## Authors: Iman Ali, Lincoln Nguyen and Amber Lin
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -34,6 +35,8 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 - [X] User can signUp, signIn, logout and stay logged in
 - [X] User can pull to refresh
 - [X] Styled icon, launch screen and custom style for app
+- [X] Username and num packages expecting displayed at top of list view
+- [X] User can view status of packages in list view
 - [ ] User will receive a notification when the package is delivered
 
 **Optional Nice-to-have Stories**
