@@ -1,5 +1,5 @@
 # Enroute
-## Authors: Iman Ali, Lincoln Nguyen and Amber Lin
+### Authors: Iman Ali, Lincoln Nguyen and Amber Lin
 
 ## Table of Contents
 1. [Overview](#Overview)
