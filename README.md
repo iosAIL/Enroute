@@ -32,6 +32,8 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 - [X] User can add a package using tracking id
 - [X] User can view latest location of package
 - [X] User can signUp, signIn, logout and stay logged in
+- [X] User can pull to refresh
+- [X] Styled icon, launch screen and custom style for app
 - [ ] User will receive a notification when the package is delivered
 
 **Optional Nice-to-have Stories**
