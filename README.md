@@ -30,7 +30,7 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 
 **Required Must-have Stories**
 
-- [X] User can add a package using tracking id
+- [X] User can add a package using tracking number & carrier
 - [X] User can view latest location of package
 - [X] User can signUp, signIn, logout and stay logged in
 - [X] User can pull to refresh
