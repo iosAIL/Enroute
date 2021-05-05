@@ -15,7 +15,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var expectingLabel: UILabel!
     
     var packages = [PFObject]()
-    // var statusForTrackingNum = ""
+    var expecting = 0;
     var statusForTrackingNum = [String: String]()
     var currentUser = PFUser.current()
     var trackingNum = "";
@@ -32,11 +32,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableview.refreshControl = refreshControl
         
         userLabel.text = currentUser?.username
-        expectingLabel.text = "Expecting " + String(packages.count) + " packages"
         tableview.delegate = self
         tableview.dataSource = self
-        //tableview.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
-        //self.view.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
         tableview.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         self.view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         
@@ -50,6 +47,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             self.refreshStatusOfAllPackages()
         }
+        
+        print(self.expecting)
+        expectingLabel.text = "Expecting " + String(self.expecting) + " packages"
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -112,11 +112,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             for package in self.packages {
                 let trackingNum = package["tracking_number"] as! String
                 let carrier = package["carrier"] as! String
+                
                 self.sendRequest(trackingNum, carrier) { data in
                     self.statusForTrackingNum[trackingNum] = data
+                    if (data.contains("Transit")) {
+                        self.expecting = self.expecting + 1;
+                        print(self.expecting)
+                    }
                     self.tableview.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-                    print(self.statusForTrackingNum)
                 }
+                
             }
         }
     }
@@ -143,6 +148,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             cell.statusImage.tintColor = UIColor.red
         }
+        
         
         return cell
     }

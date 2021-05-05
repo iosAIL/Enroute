@@ -148,7 +148,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         let dateFormatterGet2 = DateFormatter()
         dateFormatterGet2.dateFormat = "yyyy-MM-dd HH:mm"
         let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "MMM dd, yyyy, HH:mm"
+        dateFormatterPrint.dateFormat = "MMM d, h:mm a"
         
         var finaldate = Date()
         if (dateFormatterGet1.date(from: date) != nil) {
