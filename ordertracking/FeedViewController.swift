@@ -134,6 +134,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.statusLabel.text = self.statusForTrackingNum[self.trackingNum]
         cell.nameLabel.text = packages[indexPath.row]["name"] as? String
         
+        if (self.statusForTrackingNum[self.trackingNum]!.contains("Transit") ){
+            cell.statusImage.tintColor = UIColor.yellow
+        } else if (self.statusForTrackingNum[self.trackingNum]!.contains("Delivered")) {
+            cell.statusImage.tintColor = #colorLiteral(red: 0.03967227406, green: 0.6154822335, blue: 0.1182794488, alpha: 1)
+        } else if (self.statusForTrackingNum[self.trackingNum]!.contains("Loading status...")){
+            cell.statusImage.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        } else {
+            cell.statusImage.tintColor = UIColor.red
+        }
+        
         return cell
     }
     

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Track View Controller-->
+        <!--Travel History-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TrackViewController" customModule="ordertracking" customModuleProvider="target" sceneMemberID="viewController">
@@ -111,7 +111,7 @@
                             <constraint firstItem="JWZ-KS-3Yr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nR1-1h-zjk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="LUP-W4-m5D"/>
+                    <navigationItem key="navigationItem" title="Travel History" id="LUP-W4-m5D"/>
                     <connections>
                         <outlet property="tableView" destination="JWZ-KS-3Yr" id="RoJ-lF-k0c"/>
                     </connections>
@@ -333,7 +333,7 @@
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="paperplane.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bK1-NT-yHc">
                                                             <rect key="frame" x="20" y="15.999999999999993" width="128" height="111.66666666666666"/>
-                                                            <color key="tintColor" red="0.039672274064782964" green="0.61548223350253806" blue="0.11827944879534123" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="bK1-NT-yHc" secondAttribute="height" multiplier="128:113" id="KrL-mJ-w9B"/>
                                                             </constraints>
