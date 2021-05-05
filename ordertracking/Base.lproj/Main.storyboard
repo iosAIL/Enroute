@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2626.0869565217395" y="125.54347826086958"/>
+            <point key="canvasLocation" x="3533.3333333333335" y="125.54347826086958"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zka-Jb-Quc">
@@ -419,7 +419,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="13B-8O-nAw">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="HLb-Q0-tte" kind="presentation" modalPresentationStyle="fullScreen" id="kF7-6o-2Xa"/>
+                                <segue destination="ANi-7F-3Bw" kind="presentation" modalPresentationStyle="fullScreen" id="kF7-6o-2Xa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -462,16 +462,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaY-G6-5Dx">
-                                <rect key="frame" x="229" y="520" width="142" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="43" y="520" width="328" height="67"/>
+                                <color key="backgroundColor" red="0.055063562609999998" green="0.17970351879999999" blue="0.2454774082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="142" id="5Ha-Ua-UTw"/>
-                                    <constraint firstAttribute="height" constant="50" id="PFg-Cq-Jo6"/>
+                                    <constraint firstAttribute="width" constant="328" id="5Ha-Ua-UTw"/>
+                                    <constraint firstAttribute="height" constant="67" id="PFg-Cq-Jo6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Add Package">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="onSubmitButton:" destination="HLb-Q0-tte" eventType="touchUpInside" id="jzk-Xe-ozY"/>
@@ -505,52 +505,41 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIA-v5-746">
-                                <rect key="frame" x="43" y="520" width="142" height="50"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="b0f-RQ-sUX"/>
-                                    <constraint firstAttribute="width" constant="142" id="m6h-C3-wye"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelAdd:" destination="HLb-Q0-tte" eventType="touchUpInside" id="lOb-vI-KE8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jWP-RM-9HC"/>
                         <color key="backgroundColor" name="Orange"/>
                         <constraints>
                             <constraint firstItem="FcI-Mc-dDz" firstAttribute="top" secondItem="0bo-Dz-2Zf" secondAttribute="bottom" constant="8" symbolic="YES" id="2ej-D1-c8F"/>
-                            <constraint firstItem="IIA-v5-746" firstAttribute="top" secondItem="Uac-Zh-xVE" secondAttribute="bottom" constant="47" id="323-Pu-TXO"/>
                             <constraint firstItem="anf-HX-AX9" firstAttribute="leading" secondItem="jWP-RM-9HC" secondAttribute="leading" constant="43" id="45F-tP-Y6c"/>
-                            <constraint firstItem="vaY-G6-5Dx" firstAttribute="top" secondItem="IIA-v5-746" secondAttribute="top" id="6KA-o6-0CP"/>
-                            <constraint firstItem="IIA-v5-746" firstAttribute="leading" secondItem="jWP-RM-9HC" secondAttribute="leading" constant="43" id="ALb-pk-rcO"/>
                             <constraint firstItem="0bo-Dz-2Zf" firstAttribute="top" secondItem="y2I-iN-dlF" secondAttribute="bottom" constant="8" symbolic="YES" id="E7h-YZ-nU9"/>
-                            <constraint firstItem="jWP-RM-9HC" firstAttribute="trailing" secondItem="vaY-G6-5Dx" secondAttribute="trailing" constant="43" id="Ixh-RT-Lcn"/>
                             <constraint firstItem="jWP-RM-9HC" firstAttribute="trailing" secondItem="Uac-Zh-xVE" secondAttribute="trailing" constant="43" id="JwJ-d2-ESM"/>
                             <constraint firstItem="nnp-ik-FcL" firstAttribute="centerX" secondItem="jWP-RM-9HC" secondAttribute="centerX" id="K9X-sz-ElD"/>
                             <constraint firstItem="FcI-Mc-dDz" firstAttribute="leading" secondItem="jWP-RM-9HC" secondAttribute="leading" constant="43" id="K9h-bG-AVa"/>
+                            <constraint firstItem="jWP-RM-9HC" firstAttribute="bottom" secondItem="vaY-G6-5Dx" secondAttribute="bottom" constant="149" id="L1Q-bY-0PP"/>
                             <constraint firstItem="y2I-iN-dlF" firstAttribute="leading" secondItem="jWP-RM-9HC" secondAttribute="leading" constant="43" id="NkB-m6-Mf2"/>
                             <constraint firstItem="y2I-iN-dlF" firstAttribute="top" secondItem="nnp-ik-FcL" secondAttribute="bottom" constant="44" id="TQa-3c-0Rd"/>
                             <constraint firstItem="Uac-Zh-xVE" firstAttribute="leading" secondItem="jWP-RM-9HC" secondAttribute="leading" constant="43" id="aN5-mp-SqV"/>
                             <constraint firstItem="TTE-uu-OaP" firstAttribute="leading" secondItem="jWP-RM-9HC" secondAttribute="leading" constant="43" id="gih-Cr-yLE"/>
                             <constraint firstItem="anf-HX-AX9" firstAttribute="top" secondItem="TTE-uu-OaP" secondAttribute="bottom" constant="8" symbolic="YES" id="h4o-jU-GQC"/>
-                            <constraint firstItem="jWP-RM-9HC" firstAttribute="bottom" secondItem="IIA-v5-746" secondAttribute="bottom" constant="166" id="kri-2d-tJg"/>
+                            <constraint firstItem="vaY-G6-5Dx" firstAttribute="centerX" secondItem="0vT-uJ-hih" secondAttribute="centerX" id="hps-jj-eod"/>
                             <constraint firstItem="jWP-RM-9HC" firstAttribute="trailing" secondItem="0bo-Dz-2Zf" secondAttribute="trailing" constant="43" id="pU1-5c-urd"/>
+                            <constraint firstItem="vaY-G6-5Dx" firstAttribute="top" secondItem="Uac-Zh-xVE" secondAttribute="bottom" constant="47" id="pdu-VR-usb"/>
                             <constraint firstItem="TTE-uu-OaP" firstAttribute="top" secondItem="FcI-Mc-dDz" secondAttribute="bottom" constant="8" symbolic="YES" id="tjG-x5-pmL"/>
                             <constraint firstItem="Uac-Zh-xVE" firstAttribute="top" secondItem="anf-HX-AX9" secondAttribute="bottom" constant="8" symbolic="YES" id="u25-Ds-ooD"/>
                             <constraint firstItem="0bo-Dz-2Zf" firstAttribute="leading" secondItem="jWP-RM-9HC" secondAttribute="leading" constant="43" id="vFS-A7-iXh"/>
                             <constraint firstItem="jWP-RM-9HC" firstAttribute="trailing" secondItem="TTE-uu-OaP" secondAttribute="trailing" constant="43" id="zoK-tG-fr0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="J5X-Qj-bUB"/>
+                    <navigationItem key="navigationItem" id="J5X-Qj-bUB">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="z2a-Fn-3hJ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelAdd:" destination="HLb-Q0-tte" id="Awo-Yp-i5v"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addPackageButton" destination="vaY-G6-5Dx" id="id2-nV-Mlr"/>
-                        <outlet property="cancelButton" destination="IIA-v5-746" id="BC7-vM-EaQ"/>
                         <outlet property="carrierInput" destination="Uac-Zh-xVE" id="sYW-uG-cMH"/>
                         <outlet property="nameInput" destination="0bo-Dz-2Zf" id="xCJ-vI-Gqd"/>
                         <outlet property="trackNumInput" destination="TTE-uu-OaP" id="a2I-Oc-VLL"/>
@@ -558,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="204-LU-S65" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="889.85507246376824" y="125.54347826086958"/>
+            <point key="canvasLocation" x="1797.1014492753625" y="125.54347826086958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uep-iM-cxe">
@@ -580,7 +569,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79X-JX-etQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1823.1884057971015" y="125.54347826086958"/>
+            <point key="canvasLocation" x="2730.434782608696" y="125.54347826086958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aiq-t6-RbY">
@@ -603,6 +592,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4l-Xl-gjs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1070" y="126"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fsi-GL-VoV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ANi-7F-3Bw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b3Y-tE-8ES">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.069946469540987405" green="0.22875817182326355" blue="0.31680282360406087" alpha="0.24836793664383561" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HLb-Q0-tte" kind="relationship" relationship="rootViewController" id="zmh-he-LXL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I4d-kL-F5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889.85507246376824" y="125.54347826086958"/>
         </scene>
     </scenes>
     <resources>

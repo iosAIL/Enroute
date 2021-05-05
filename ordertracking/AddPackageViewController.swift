@@ -12,13 +12,13 @@ class AddPackageViewController: UIViewController {
     
     @IBOutlet weak var trackNumInput: UITextField!
     @IBOutlet weak var carrierInput: UITextField!
-    @IBOutlet weak var cancelButton: UIButton!
+
     @IBOutlet weak var addPackageButton: UIButton!
     @IBOutlet weak var nameInput: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cancelButton.layer.cornerRadius = 7
+    
         addPackageButton.layer.cornerRadius = 7
         nameInput.placeholder = "Package Enroute"
         trackNumInput.placeholder = "123456789"
@@ -32,6 +32,10 @@ class AddPackageViewController: UIViewController {
     @IBAction func cancelAdd(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    /*
+    @IBAction func cancelAdd(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }*/
     
     @IBAction func onSubmitButton(_ sender: Any) {
         let package = PFObject(className: "Packages")
