@@ -12,7 +12,6 @@ class AddPackageViewController: UIViewController {
     
     @IBOutlet weak var trackNumInput: UITextField!
     @IBOutlet weak var carrierInput: UITextField!
-
     @IBOutlet weak var addPackageButton: UIButton!
     @IBOutlet weak var nameInput: UITextField!
     
