@@ -8,8 +8,6 @@
 import UIKit
 import Foundation
 
-
-
 class TrackViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var trackInfo = [[String:Any]]()
@@ -91,6 +89,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         // self.title = "Tracking Number: \(trackingNum)"
         self.title = "Loading..."
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
         // DispatchQueue.main.async {
         //     print(returnData)
         // }
@@ -121,9 +120,9 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         tableView.dataSource = self
         tableView.delegate = self
-        let newButton = UIBarButtonItem(title: "Close",style: UIBarButtonItem.Style.plain, target: self, action: #selector(TrackViewController.close(sender:)))
-        newButton.tintColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = newButton
+        // let newButton = UIBarButtonItem(title: "Close",style: UIBarButtonItem.Style.plain, target: self, action: #selector(TrackViewController.close(sender:)))
+        // newButton.tintColor = UIColor.white
+        // self.navigationItem.rightBarButtonItem = newButton
     }
     
     @objc func close(sender: UIBarButtonItem) {
@@ -136,6 +135,10 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PackageCell") as! RouteCell
+        
+        // cell.topLine.addDashedBorder()
+        // cell.bottomLine.addDashedBorder()
+        
         let locations = trackInfo[indexPath.row]
         let statusDescription = locations["StatusDescription"] as! String
         let date = locations["Date"] as! String
@@ -172,7 +175,16 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         if !checkpointStatus.isEmpty {
             cell.checkpointStatus.text = checkpointStatus
+            if (checkpointStatus == "transit" || checkpointStatus == "pending" || checkpointStatus == "pickup"){
+                cell.arrow.tintColor = UIColor.yellow
+            } else if (checkpointStatus == "delivered") {
+                cell.arrow.tintColor = #colorLiteral(red: 0.03967227406, green: 0.6154822335, blue: 0.1182794488, alpha: 1)
+            } else {
+                // cell.statusImage.tintColor = UIColor.red
+                cell.arrow.tintColor = UIColor.red
+            }
         }
+        
         cell.orderNum.text = String(trackInfo.count - indexPath.row)
         return cell
     }

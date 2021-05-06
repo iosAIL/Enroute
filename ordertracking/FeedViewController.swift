@@ -20,13 +20,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var currentUser = PFUser.current()
     var trackingNum = "";
     var carrier = "";
-    var totalRefreshedSoFar = 0;
+    var totalRefreshedSoFar = [String]();
     
     //pull to refresh NEED UPDATING PKG TO TEST
     var refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.expectingLabel.text = "Calculating expected packages..."
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableview.refreshControl = refreshControl
@@ -47,6 +48,31 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             self.refreshStatusOfAllPackages()
         }
+    }
+    
+    @IBAction func onAddPackage(_ sender: Any) {
+        // let newViewController = AddPackageViewController()
+        // self.present(newViewController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nav = storyboard.instantiateViewController(withIdentifier: "addPackageNav") as! UINavigationController
+        let addPackageVC = nav.topViewController as! AddPackageViewController
+        addPackageVC.feedVC = self
+        self.present(nav, animated: true)
+        
+        // let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        // loginViewController.modalPresentationStyle = .fullScreen
+        // self.present(loginViewController, animated: true)
+        
+        // let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // let nav = storyboard.instantiateViewController(withIdentifier: "TrackViewController") as! UINavigationController
+        // let trackViewController = nav.topViewController as! TrackViewController
+        // let carrier = packages[indexPath.row]["carrier"] as? String
+        // trackViewController.setTrackingNumAndCarrier(trackNum, carrier)
+        // trackViewController.packageName = packages[indexPath.row]["name"] as! String
+        // nav.modalPresentationStyle = .fullScreen
+        // // self.navigationController?.pushViewController(newViewController, animated: true)
+        // // self.present(nav, animated: true)
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -104,7 +130,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func refreshStatusOfAllPackages() {
         self.expecting = 0
-        self.totalRefreshedSoFar = 0
+        self.totalRefreshedSoFar = [String]()
         self.expectingLabel.text = "Calculating expected packages..."
         for package in self.packages {
             let trackingNum = package["tracking_number"] as! String
@@ -119,13 +145,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 self.sendRequest(trackingNum, carrier) { data in
                     self.statusForTrackingNum[trackingNum] = data
-                    self.totalRefreshedSoFar += 1
+                    self.totalRefreshedSoFar.append(trackingNum)
                     print(self.totalRefreshedSoFar)
                     if (data.contains("Transit")) {
                         self.expecting = self.expecting + 1;
                         print(self.expecting)
                     }
-                    if (self.totalRefreshedSoFar == self.packages.count) {
+                    if (self.totalRefreshedSoFar.count == self.packages.count) {
                         self.performSelector(onMainThread: #selector(self.updateExpectingPackages), with: nil, waitUntilDone: true)
                     }
                     self.tableview.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
@@ -171,15 +197,21 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         // let cell = tableview.cellForRow(at: indexPath) as! PackageTableViewCell
         // print(cell.trackingNumber.text!)
         // self.present(TrackViewController, animated: true, completion: nil)
+        let trackNum = packages[indexPath.row]["tracking_number"] as? String
+        if !(self.totalRefreshedSoFar.contains(trackNum ?? "invalid")) {
+            return
+        }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nav = storyboard.instantiateViewController(withIdentifier: "TrackViewController") as! UINavigationController
         let trackViewController = nav.topViewController as! TrackViewController
-        let trackNum = packages[indexPath.row]["tracking_number"] as? String
         let carrier = packages[indexPath.row]["carrier"] as? String
         trackViewController.setTrackingNumAndCarrier(trackNum, carrier)
         trackViewController.packageName = packages[indexPath.row]["name"] as! String
         nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true)
+        // self.navigationController?.pushViewController(newViewController, animated: true)
+        // self.present(nav, animated: true)
+        self.navigationController?.pushViewController(trackViewController, animated: true)
     }
     
 
