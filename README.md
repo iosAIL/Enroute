@@ -57,7 +57,7 @@ https://recordit.co/VLTLTC6tXQ
 
 
 ### Milestone 3 demo
---------------General-----------------------Track Details new styling--------------<br>
+--------------General---------------------------Track Details new styling----------<br>
 <img src="http://g.recordit.co/dTqVLhWUXt.gif" title='Video Walkthrough' width='300' alt='Video Walkthrough'> <img src="http://g.recordit.co/giigp1fF6W.gif" width=303> 
 
 ### 2. Screen Archetypes
