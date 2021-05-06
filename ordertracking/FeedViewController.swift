@@ -20,7 +20,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var currentUser = PFUser.current()
     var trackingNum = "";
     var carrier = "";
-    
+    var totalRefreshedSoFar = 0;
     
     //pull to refresh NEED UPDATING PKG TO TEST
     var refreshControl = UIRefreshControl()
@@ -47,9 +47,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             self.refreshStatusOfAllPackages()
         }
-        
-        print(self.expecting)
-        expectingLabel.text = "Expecting " + String(self.expecting) + " packages"
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -101,7 +98,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return packages.count
     }
     
+    @objc public func updateExpectingPackages() {
+        self.expectingLabel.text = "Expecting " + String(self.expecting) + " packages"
+    }
+    
     func refreshStatusOfAllPackages() {
+        self.expecting = 0
+        self.totalRefreshedSoFar = 0
+        self.expectingLabel.text = "Calculating expected packages..."
         for package in self.packages {
             let trackingNum = package["tracking_number"] as! String
             self.statusForTrackingNum[trackingNum] = "Loading status..."
@@ -115,9 +119,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 self.sendRequest(trackingNum, carrier) { data in
                     self.statusForTrackingNum[trackingNum] = data
+                    self.totalRefreshedSoFar += 1
+                    print(self.totalRefreshedSoFar)
                     if (data.contains("Transit")) {
                         self.expecting = self.expecting + 1;
                         print(self.expecting)
+                    }
+                    if (self.totalRefreshedSoFar == self.packages.count) {
+                        self.performSelector(onMainThread: #selector(self.updateExpectingPackages), with: nil, waitUntilDone: true)
                     }
                     self.tableview.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
                 }
