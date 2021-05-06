@@ -54,6 +54,9 @@ https://recordit.co/VLTLTC6tXQ
 ### Milestone 2 demo
 <img src='http://g.recordit.co/2o84abJsc4.gif' />
 
+### Milestone 3 demo
+<img src='http://g.recordit.co/dTqVLhWUXt.gif' />
+
 ### 2. Screen Archetypes
 
 * Login
