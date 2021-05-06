@@ -94,7 +94,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="paperplane.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="auq-Nu-9yG">
-                                                    <rect key="frame" x="15" y="46.999999999999886" width="50" height="47.666666666666664"/>
+                                                    <rect key="frame" x="15" y="46.666666666666664" width="50" height="47.666666666666664"/>
                                                     <color key="tintColor" systemColor="systemGreenColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="RYp-1g-tg1"/>

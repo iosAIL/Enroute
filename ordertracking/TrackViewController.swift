@@ -111,18 +111,11 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 self.trackInfo = data;
                 self.tableView.reloadData()
-                // self.title = "Tracking Number: \(self.trackingNum)"
                 self.title = self.packageName
             }
-            // if (self.trackInfo.count <= 0) {
-            //     self.title = "No package found."
-            // }
         }
         tableView.dataSource = self
         tableView.delegate = self
-        // let newButton = UIBarButtonItem(title: "Close",style: UIBarButtonItem.Style.plain, target: self, action: #selector(TrackViewController.close(sender:)))
-        // newButton.tintColor = UIColor.white
-        // self.navigationItem.rightBarButtonItem = newButton
     }
     
     @objc func close(sender: UIBarButtonItem) {
@@ -135,9 +128,6 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PackageCell") as! RouteCell
-        
-        // cell.topLine.addDashedBorder()
-        // cell.bottomLine.addDashedBorder()
         
         let locations = trackInfo[indexPath.row]
         let statusDescription = locations["StatusDescription"] as! String
@@ -180,7 +170,6 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
             } else if (checkpointStatus == "delivered") {
                 cell.arrow.tintColor = #colorLiteral(red: 0.03967227406, green: 0.6154822335, blue: 0.1182794488, alpha: 1)
             } else {
-                // cell.statusImage.tintColor = UIColor.red
                 cell.arrow.tintColor = UIColor.red
             }
         }
