@@ -27,9 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func login (){
-        let main = UIStoryboard(name: "Main", bundle: nil)
-            
-        window?.rootViewController = main.instantiateViewController(identifier: "FeedNavigationController")
+        let rootViewController = (UIApplication.shared.windows.first?.rootViewController)! as! LoginViewController
+        rootViewController.loggedInAlready = true
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

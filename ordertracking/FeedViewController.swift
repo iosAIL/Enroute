@@ -27,7 +27,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.expectingLabel.text = "Calculating expected packages..."
+        self.expectingLabel.text = "0 out of \(self.packages.count) packages fetched..."
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableview.refreshControl = refreshControl
@@ -51,28 +51,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func onAddPackage(_ sender: Any) {
-        // let newViewController = AddPackageViewController()
-        // self.present(newViewController, animated: true, completion: nil)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nav = storyboard.instantiateViewController(withIdentifier: "addPackageNav") as! UINavigationController
         let addPackageVC = nav.topViewController as! AddPackageViewController
         addPackageVC.feedVC = self
         self.present(nav, animated: true)
-        
-        // let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        // let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        // loginViewController.modalPresentationStyle = .fullScreen
-        // self.present(loginViewController, animated: true)
-        
-        // let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        // let nav = storyboard.instantiateViewController(withIdentifier: "TrackViewController") as! UINavigationController
-        // let trackViewController = nav.topViewController as! TrackViewController
-        // let carrier = packages[indexPath.row]["carrier"] as? String
-        // trackViewController.setTrackingNumAndCarrier(trackNum, carrier)
-        // trackViewController.packageName = packages[indexPath.row]["name"] as! String
-        // nav.modalPresentationStyle = .fullScreen
-        // // self.navigationController?.pushViewController(newViewController, animated: true)
-        // // self.present(nav, animated: true)
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -114,10 +97,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        loginViewController.modalPresentationStyle = .fullScreen
-        self.present(loginViewController, animated: true)
+        // let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        // loginViewController.modalPresentationStyle = .fullScreen
+        // self.present(loginViewController, animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,10 +112,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.expectingLabel.text = "Expecting " + String(self.expecting) + " packages"
     }
     
+    @objc public func updatePackageFetchStatus() {
+        self.expectingLabel.text = "\(self.totalRefreshedSoFar.count) out of \(self.packages.count) packages fetched..."
+    }
+    
     func refreshStatusOfAllPackages() {
         self.expecting = 0
         self.totalRefreshedSoFar = [String]()
-        self.expectingLabel.text = "Calculating expected packages..."
+        self.expectingLabel.text = "\(self.totalRefreshedSoFar.count) out of \(self.packages.count) packages fetched..."
         for package in self.packages {
             let trackingNum = package["tracking_number"] as! String
             self.statusForTrackingNum[trackingNum] = "Loading status..."
@@ -153,6 +141,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                     if (self.totalRefreshedSoFar.count == self.packages.count) {
                         self.performSelector(onMainThread: #selector(self.updateExpectingPackages), with: nil, waitUntilDone: true)
+                    } else {
+                        self.performSelector(onMainThread: #selector(self.updatePackageFetchStatus), with: nil, waitUntilDone: true)
                     }
                     self.tableview.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
                 }

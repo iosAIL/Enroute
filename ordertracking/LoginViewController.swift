@@ -14,7 +14,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
+    var loggedInAlready = false
     
+    override func viewDidAppear(_ animated: Bool) {
+        if loggedInAlready {
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            loggedInAlready = false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
