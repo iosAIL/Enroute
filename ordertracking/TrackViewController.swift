@@ -87,6 +87,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        // self.view.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         // self.title = "Tracking Number: \(trackingNum)"
         self.title = "Loading..."
         self.navigationController?.navigationBar.tintColor = UIColor.white;
@@ -134,7 +135,7 @@ class TrackViewController: UIViewController, UITableViewDataSource, UITableViewD
         let date = locations["Date"] as! String
         let details = locations["Details"] as! String
         let checkpointStatus = locations["checkpoint_status"] as! String
-        cell.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        // cell.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
         let dateFormatterGet1 = DateFormatter()
         dateFormatterGet1.dateFormat = "yyyy-MM-dd HH:mm:ss"
