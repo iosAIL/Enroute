@@ -47,7 +47,8 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 - [X] User can view past locations of package and its arrival times at those locations
 
 ### Milestone 1 demo
-<img src="http://g.recordit.co/VLTLTC6tXQ.gif" title='Video Walkthrough' width='350' alt='Video Walkthrough/>
+<img src='http://g.recordit.co/VLTLTC6tXQ.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 GitHub cut off part of GIF I think, here is full GIF showing persistence of login/logout states:
 https://recordit.co/VLTLTC6tXQ
 
