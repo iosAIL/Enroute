@@ -1,14 +1,19 @@
-//
-//  SubmitInfoViewController.swift
-//  ordertracking
-//
-//  Created by Lincoln Nguyen on 4/9/21.
-//
-
 import UIKit
 import Parse
+import DropDown
 
 class AddPackageViewController: UIViewController {
+    
+    
+    @IBOutlet weak var carrierDropDown: UIView!
+    @IBOutlet weak var carrierTitle: UILabel!
+    
+    let dropdown = DropDown()
+    let carrierList = ["usps","ups","fedex"]
+    
+    @IBAction func showCarriersOpts(_ sender: Any) {
+        dropdown.show()
+    }
     
     @IBOutlet weak var trackNumInput: UITextField!
     @IBOutlet weak var carrierInput: UITextField!
@@ -27,6 +32,17 @@ class AddPackageViewController: UIViewController {
         // nameInput.placeholder = "Package Enroute"
         // trackNumInput.placeholder = "123456789"
         // carrierInput.placeholder = "fedex"
+        
+        
+        //----------- define dropdown ---------//
+        carrierTitle.text = ""
+        dropdown.anchorView = carrierDropDown
+        dropdown.dataSource = carrierList
+        dropdown.bottomOffset = CGPoint(x:0,y:(dropdown.anchorView?.plainView.bounds.height)!)
+        dropdown.topOffset = CGPoint(x:0,y:-(dropdown.anchorView?.plainView.bounds.height)!)
+        dropdown.selectionAction = {[unowned self](index:Int, item:String) in print("selected iten: \(item) at index: \(index)")
+            self.carrierTitle.text = carrierList[index]
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -46,7 +62,10 @@ class AddPackageViewController: UIViewController {
         
         package["author"] = PFUser.current()
         package["tracking_number"] = trackNumInput.text!
-        package["carrier"] = carrierInput.text!
+        //package["carrier"] = carrierInput.text!
+        package["carrier"] = carrierTitle.text!
+        
+        
         package["name"] = nameInput.text!.isEmpty ? "Package Enroute" : nameInput.text!
         
         package.saveInBackground { (success, error) in
@@ -74,3 +93,4 @@ class AddPackageViewController: UIViewController {
         }
     }*/
 }
+
