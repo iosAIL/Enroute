@@ -19,6 +19,10 @@
 		D45828D1261FFC520044C735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45828D0261FFC520044C735 /* Assets.xcassets */; };
 		D45828D4261FFC520044C735 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45828D2261FFC520044C735 /* LaunchScreen.storyboard */; };
 		D45828E026203DA90044C735 /* AddPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45828DF26203DA90044C735 /* AddPackageViewController.swift */; };
+		D4BA3E05264C8B4100D504AA /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA3E03264C8B4100D504AA /* DropdownTableViewCell.swift */; };
+		D4BA3E06264C8B4100D504AA /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BA3E04264C8B4100D504AA /* DropdownTableViewCell.xib */; };
+		D4E6386D264C7C5D0066355F /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6386C264C7C5D0066355F /* TextInputTableViewCell.swift */; };
+		D4E63871264C7DC30066355F /* TextInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E63870264C7DC30066355F /* TextInputTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		D45828D3261FFC520044C735 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D45828D5261FFC520044C735 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D45828DF26203DA90044C735 /* AddPackageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPackageViewController.swift; sourceTree = "<group>"; };
+		D4BA3E03264C8B4100D504AA /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
+		D4BA3E04264C8B4100D504AA /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
+		D4E6386C264C7C5D0066355F /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
+		D4E63870264C7DC30066355F /* TextInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInputTableViewCell.xib; sourceTree = "<group>"; };
 		E80FCA3D790171CF8EDBDF6D /* Pods-ordertracking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ordertracking.debug.xcconfig"; path = "Target Support Files/Pods-ordertracking/Pods-ordertracking.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +110,10 @@
 				1B943529262BD4CE005D2090 /* FeedViewController.swift */,
 				D45828CB261FFC500044C735 /* TrackViewController.swift */,
 				D41B3443262BDD4A00E006EC /* RouteCell.swift */,
+				D4E6386C264C7C5D0066355F /* TextInputTableViewCell.swift */,
+				D4BA3E03264C8B4100D504AA /* DropdownTableViewCell.swift */,
+				D4BA3E04264C8B4100D504AA /* DropdownTableViewCell.xib */,
+				D4E63870264C7DC30066355F /* TextInputTableViewCell.xib */,
 			);
 			path = ordertracking;
 			sourceTree = "<group>";
@@ -168,6 +180,8 @@
 				D45828D4261FFC520044C735 /* LaunchScreen.storyboard in Resources */,
 				D45828D1261FFC520044C735 /* Assets.xcassets in Resources */,
 				D45828CF261FFC500044C735 /* Main.storyboard in Resources */,
+				D4E63871264C7DC30066355F /* TextInputTableViewCell.xib in Resources */,
+				D4BA3E06264C8B4100D504AA /* DropdownTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,8 +239,10 @@
 				D45828CC261FFC500044C735 /* TrackViewController.swift in Sources */,
 				D41B3444262BDD4A00E006EC /* RouteCell.swift in Sources */,
 				D41B344C262BDDF800E006EC /* PackageTableViewCell.swift in Sources */,
+				D4E6386D264C7C5D0066355F /* TextInputTableViewCell.swift in Sources */,
 				D45828C8261FFC500044C735 /* AppDelegate.swift in Sources */,
 				D45828CA261FFC500044C735 /* SceneDelegate.swift in Sources */,
+				D4BA3E05264C8B4100D504AA /* DropdownTableViewCell.swift in Sources */,
 				1B94352A262BD4CE005D2090 /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

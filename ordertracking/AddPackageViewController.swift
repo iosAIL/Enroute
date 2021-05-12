@@ -8,18 +8,25 @@
 import UIKit
 import Parse
 
-class AddPackageViewController: UIViewController {
-    
+class AddPackageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var trackNumInput: UITextField!
     @IBOutlet weak var carrierInput: UITextField!
     // @IBOutlet weak var addPackageButton: UIButton!
     @IBOutlet weak var addPackageButton: UIBarButtonItem!
     @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var inputsTableView: UITableView!
     var feedVC: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addPackageButton.style = .done
+        // inputsTableView.delegate = self
+        // inputsTableView.dataSource = self
+        inputsTableView.register(UINib(nibName: "TextInputTableViewCell", bundle: nil), forCellReuseIdentifier: "TextInputTableViewCell")
+        inputsTableView.register(UINib(nibName: "DropdownTableViewCell", bundle: nil), forCellReuseIdentifier: "DropdownTableViewCell")
+        inputsTableView.dataSource = self
+        inputsTableView.tableFooterView = UIView()
+        inputsTableView.tableFooterView?.isHidden = true
         // let feedVC2 = self.feedVC as! FeedViewController
         // print(feedVC2.expectingLabel.text!)
     
@@ -27,6 +34,28 @@ class AddPackageViewController: UIViewController {
         // nameInput.placeholder = "Package Enroute"
         // trackNumInput.placeholder = "123456789"
         // carrierInput.placeholder = "fedex"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextInputTableViewCell", for: indexPath) as! TextInputTableViewCell
+        if (indexPath.row == 0) {
+            cell.textfield.placeholder = "Package name"
+            cell.selectionStyle = .none
+        } else if (indexPath.row == 1) {
+            cell.textfield.placeholder = "Tracking number"
+            cell.selectionStyle = .none
+        } else if (indexPath.row == 2) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownTableViewCell", for: indexPath) as! DropdownTableViewCell
+            cell.selectionStyle = .default
+            return cell
+            // cell.textfield.placeholder = "Carrier"
+        }
+        
+        return cell
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
