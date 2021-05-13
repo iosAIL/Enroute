@@ -8,12 +8,8 @@
 import UIKit
 import Parse
 
-class AddPackageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    // @IBOutlet weak var trackNumInput: UITextField!
-    // @IBOutlet weak var carrierInput: UITextField!
-    // @IBOutlet weak var addPackageButton: UIButton!
+class AddPackageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var addPackageButton: UIBarButtonItem!
-    // @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var inputsTableView: UITableView!
     var feedVC: UIViewController!
     
@@ -21,7 +17,6 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
         let location = tap.location(in: self.inputsTableView)
         let path = self.inputsTableView.indexPathForRow(at: location)
         if path == nil {
-            // print("blank!")
             self.view.endEditing(true)
         }
     }
@@ -41,6 +36,30 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
         // self.inputsTableView.contentInset.top = 30
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let nameTextfieldCell = inputsTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TextInputTableViewCell
+        nameTextfieldCell.textfield.tag = 0
+        let trackNumTextfieldCell = inputsTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TextInputTableViewCell
+        trackNumTextfieldCell.textfield.tag = 1
+        nameTextfieldCell.textfield!.delegate = self
+        trackNumTextfieldCell.textfield!.delegate = self
+        nameTextfieldCell.textfield!.becomeFirstResponder()
+        nameTextfieldCell.textfield.addTarget(self, action: #selector(enterPressed(sender:)), for: .editingDidEndOnExit)
+        trackNumTextfieldCell.textfield.addTarget(self, action: #selector(enterPressed(sender:)), for: .editingDidEndOnExit)
+    }
+    
+    @objc func enterPressed(sender: UITextField){
+        if (sender.tag == 0) {
+            let trackNumTextfieldCell = inputsTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TextInputTableViewCell
+            trackNumTextfieldCell.textfield.becomeFirstResponder()
+        } else if (sender.tag == 1) {
+            self.resignFirstResponder()
+            let dropdown = self.inputsTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! DropdownTableViewCell
+            dropdown.gestureAction()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -49,15 +68,17 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextInputTableViewCell", for: indexPath) as! TextInputTableViewCell
         if (indexPath.row == 0) {
             cell.textfield.placeholder = "Package name"
+            cell.textfield.tag = 0
+            cell.textfield.autocapitalizationType = .sentences
             cell.selectionStyle = .none
         } else if (indexPath.row == 1) {
             cell.textfield.placeholder = "Tracking number"
+            cell.textfield.tag = 1
             cell.selectionStyle = .none
         } else if (indexPath.row == 2) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownTableViewCell", for: indexPath) as! DropdownTableViewCell
             cell.selectionStyle = .default
             return cell
-            // cell.textfield.placeholder = "Carrier"
         }
         
         return cell
@@ -92,8 +113,6 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
             package.saveInBackground { (success, error) in
                 if success {
                     self.dismiss(animated: true, completion: {
-                        // print("test")
-                        // let feedViewController = self.presentingViewController as! FeedViewController
                         let feedVC2 = self.feedVC as! FeedViewController
                         feedVC2.viewDidLoad()
                     })
@@ -105,15 +124,5 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
-        
-        // let feedViewController = self.parent?.parent as! FeedViewController
-        // let feedViewController = nav.topViewController as! FeedViewController
-        // feedViewController.refreshStatusOfAllPackages()
     }
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nav = segue.destination as? UINavigationController, let trackViewController = nav.topViewController as? TrackViewController {
-            trackViewController.setTrackingNumAndCarrier(trackNumInput.text, carrierInput.text)
-        }
-    }*/
 }

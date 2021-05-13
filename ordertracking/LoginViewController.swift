@@ -8,7 +8,7 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -17,10 +17,28 @@ class LoginViewController: UIViewController {
     var loggedInAlready = false
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if loggedInAlready {
             self.performSegue(withIdentifier: "loginSegue", sender: nil)
             loggedInAlready = false
+        } else {
+            usernameField.delegate = self
+            usernameField.becomeFirstResponder()
         }
+        // let nameTextfield = (inputsTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TextInputTableViewCell).textfield
+        // let trackNumTextfield = (inputsTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TextInputTableViewCell).textfield
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     override func viewDidLoad() {

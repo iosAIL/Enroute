@@ -239,6 +239,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
                 if (error != nil) {
                     print(error!)
+                    return completion("Package not found.")
                 } else if let data = data {
                     let httpResponse = response as? HTTPURLResponse
                     // print(httpResponse)
@@ -309,6 +310,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             }).resume()
         } catch {
             print(error)
+            return completion("Package not found.")
         }
     }
     
