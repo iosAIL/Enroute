@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextInputTableViewCell" id="qSO-wi-Lg5" customClass="TextInputTableViewCell" customModule="ordertracking" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qSO-wi-Lg5" id="ESX-sb-nlN">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="This is a test" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9nF-JJ-1NN">
+                        <rect key="frame" x="20" y="11" width="374" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9nF-JJ-1NN" firstAttribute="centerY" secondItem="ESX-sb-nlN" secondAttribute="centerY" id="07b-Rg-Vdu"/>
+                    <constraint firstItem="9nF-JJ-1NN" firstAttribute="leading" secondItem="ESX-sb-nlN" secondAttribute="leading" constant="20" symbolic="YES" id="J0B-9V-R3i"/>
+                    <constraint firstAttribute="trailing" secondItem="9nF-JJ-1NN" secondAttribute="trailing" constant="20" symbolic="YES" id="L8Z-Bk-tVy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="textfield" destination="9nF-JJ-1NN" id="Ooe-rt-RJV"/>
+            </connections>
+            <point key="canvasLocation" x="-17.39130434782609" y="36.830357142857139"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,26 +1,26 @@
 PODS:
+  - AYPopupPickerView (1.2)
   - Bolts/Tasks (1.9.1)
-  - DropDown (2.3.13)
   - Parse (1.19.2):
     - Parse/Core (= 1.19.2)
   - Parse/Core (1.19.2):
     - Bolts/Tasks (= 1.9.1)
 
 DEPENDENCIES:
-  - DropDown
+  - AYPopupPickerView
   - Parse
 
 SPEC REPOS:
   trunk:
+    - AYPopupPickerView
     - Bolts
-    - DropDown
     - Parse
 
 SPEC CHECKSUMS:
+  AYPopupPickerView: 639e88c630c79f68e1dc34cf2c90f43ea2dbff46
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
-  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Parse: 081fb8755c3000fd11df817eec235def233d0af3
 
-PODFILE CHECKSUM: ebb3005a9db2609b7fc6b9eaffe1312588ffd556
+PODFILE CHECKSUM: 935dd6492446b71b86c8d0e8d7bc3f00d0ce5f5f
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

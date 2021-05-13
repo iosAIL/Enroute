@@ -27,7 +27,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.expectingLabel.text = "0 out of \(self.packages.count) packages fetched..."
+        self.expectingLabel.text = "Fetching packages..."
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableview.refreshControl = refreshControl
@@ -117,6 +117,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func refreshStatusOfAllPackages() {
+        if self.packages.count == 0 {
+            self.expectingLabel.text = "Expecting 0 packages"
+            return
+        }
         self.expecting = 0
         self.totalRefreshedSoFar = [String]()
         self.expectingLabel.text = "\(self.totalRefreshedSoFar.count) out of \(self.packages.count) packages fetched..."
