@@ -118,7 +118,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func refreshStatusOfAllPackages() {
         if self.packages.count == 0 {
-            self.expectingLabel.text = "Expecting 0 packages"
+            self.expectingLabel.text = "No packages added"
             return
         }
         self.expecting = 0
@@ -139,7 +139,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.statusForTrackingNum[trackingNum] = data
                     self.totalRefreshedSoFar.append(trackingNum)
                     print(self.totalRefreshedSoFar)
-                    if (data.contains("Transit")) {
+                    if (data.starts(with: "Transit") || data.starts(with: "Pending") || data.starts(with: "Pickup")) {
+                    // if (data.contains("Transit") || ) {
                         self.expecting = self.expecting + 1;
                         print(self.expecting)
                     }
@@ -165,14 +166,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.carrierLabel.text = self.carrier
         //cell.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.7607843137, blue: 0.5568627451, alpha: 1)
         cell.backgroundColor = #colorLiteral(red: 0.05710693449, green: 0.1802713573, blue: 0.2454774082, alpha: 1)
-        cell.statusLabel.text = self.statusForTrackingNum[self.trackingNum]
+        let status = self.statusForTrackingNum[self.trackingNum]
+        cell.statusLabel.text = status
         cell.nameLabel.text = packages[indexPath.row]["name"] as? String
         
-        if (self.statusForTrackingNum[self.trackingNum]!.contains("Transit") ){
+        // if (self.statusForTrackingNum[self.trackingNum]!.contains("Transit") ){
+        if (status!.starts(with: "Transit") || status!.starts(with: "Pending") || status!.starts(with: "Pickup")) {
             cell.statusImage.tintColor = UIColor.yellow
-        } else if (self.statusForTrackingNum[self.trackingNum]!.contains("Delivered")) {
+        // } else if (self.statusForTrackingNum[self.trackingNum]!.contains("Delivered")) {
+        } else if (status!.starts(with: "Delivered")) {
             cell.statusImage.tintColor = #colorLiteral(red: 0.03967227406, green: 0.6154822335, blue: 0.1182794488, alpha: 1)
-        } else if (self.statusForTrackingNum[self.trackingNum]!.contains("Loading status...")){
+        // } else if (self.statusForTrackingNum[self.trackingNum]!.contains("Loading status...")){
+        } else if (status == "Loading status...") {
             cell.statusImage.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         } else {
             cell.statusImage.tintColor = UIColor.red
