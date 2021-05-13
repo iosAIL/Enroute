@@ -42,9 +42,15 @@ class LoginViewController: UIViewController {
             if success {
                 self.usernameField.text = ""
                 self.passwordField.text = ""
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                // self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                let alert = UIAlertController(title: "Registered", message: "Account successfully registered. Please login.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
             } else {
                 print("Error: \(error!.localizedDescription))")
+                let alert = UIAlertController(title: "Invalid Input", message: "Please enter a valid username and password.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }
@@ -60,6 +66,9 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             } else {
                 print("Error: \(String(describing: error?.localizedDescription))")
+                let alert = UIAlertController(title: "Invalid Input", message: "Please enter a valid username and password.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }

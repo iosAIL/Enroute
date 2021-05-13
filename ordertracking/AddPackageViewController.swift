@@ -9,13 +9,22 @@ import UIKit
 import Parse
 
 class AddPackageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var trackNumInput: UITextField!
-    @IBOutlet weak var carrierInput: UITextField!
+    // @IBOutlet weak var trackNumInput: UITextField!
+    // @IBOutlet weak var carrierInput: UITextField!
     // @IBOutlet weak var addPackageButton: UIButton!
     @IBOutlet weak var addPackageButton: UIBarButtonItem!
-    @IBOutlet weak var nameInput: UITextField!
+    // @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var inputsTableView: UITableView!
     var feedVC: UIViewController!
+    
+    @objc func tableTapped(tap:UITapGestureRecognizer) {
+        let location = tap.location(in: self.inputsTableView)
+        let path = self.inputsTableView.indexPathForRow(at: location)
+        if path == nil {
+            // print("blank!")
+            self.view.endEditing(true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +36,9 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
         inputsTableView.dataSource = self
         inputsTableView.tableFooterView = UIView()
         inputsTableView.tableFooterView?.isHidden = true
-        // let feedVC2 = self.feedVC as! FeedViewController
-        // print(feedVC2.expectingLabel.text!)
-    
-        // addPackageButton.layer.cornerRadius = 7
-        // nameInput.placeholder = "Package Enroute"
-        // trackNumInput.placeholder = "123456789"
-        // carrierInput.placeholder = "fedex"
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
+        self.inputsTableView.addGestureRecognizer(tap)
+        self.inputsTableView.contentInset.top = 30
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,30 +70,39 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func cancelAdd(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    /*
-    @IBAction func cancelAdd(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }*/
     
     @IBAction func onSubmitButton(_ sender: Any) {
-        let package = PFObject(className: "Packages")
-        
-        package["author"] = PFUser.current()
-        package["tracking_number"] = trackNumInput.text!
-        package["carrier"] = carrierInput.text!
-        package["name"] = nameInput.text!.isEmpty ? "Package Enroute" : nameInput.text!
-        
-        package.saveInBackground { (success, error) in
-            if success {
-                self.dismiss(animated: true, completion: {
-                    print("test")
-                    // let feedViewController = self.presentingViewController as! FeedViewController
-                    let feedVC2 = self.feedVC as! FeedViewController
-                    feedVC2.viewDidLoad()
-                })
-                print("saved!")
-            } else {
-                print("error!")
+        let name = (inputsTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TextInputTableViewCell).textfield.text!
+        let trackNum = (inputsTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TextInputTableViewCell).textfield.text!
+        let carrier = (inputsTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! DropdownTableViewCell).carrierLabel.text!
+        if (name.count < 1) || (trackNum.count < 1) {
+            let alert = UIAlertController(title: "Invalid Input", message: "Please enter a package name and tracking number.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        } else {
+            print(name)
+            print(trackNum)
+            print(carrier)
+            let package = PFObject(className: "Packages")
+            package["author"] = PFUser.current()
+            package["name"] = name
+            package["tracking_number"] = trackNum
+            package["carrier"] = carrier
+            package.saveInBackground { (success, error) in
+                if success {
+                    self.dismiss(animated: true, completion: {
+                        // print("test")
+                        // let feedViewController = self.presentingViewController as! FeedViewController
+                        let feedVC2 = self.feedVC as! FeedViewController
+                        feedVC2.viewDidLoad()
+                    })
+                    print("saved!")
+                } else {
+                    let alert = UIAlertController(title: "Error", message: "Server error.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
             }
         }
         

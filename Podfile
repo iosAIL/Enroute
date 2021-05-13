@@ -7,5 +7,6 @@ target 'ordertracking' do
 
   # Pods for ordertracking
   pod 'Parse'
+  pod 'AYPopupPickerView'
 
 end
