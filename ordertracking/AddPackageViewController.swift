@@ -38,7 +38,7 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
         inputsTableView.tableFooterView?.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
         self.inputsTableView.addGestureRecognizer(tap)
-        self.inputsTableView.contentInset.top = 30
+        // self.inputsTableView.contentInset.top = 30
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
