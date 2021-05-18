@@ -31,6 +31,7 @@ class AddPackageViewController: UIViewController, UITableViewDelegate, UITableVi
         inputsTableView.dataSource = self
         inputsTableView.tableFooterView = UIView()
         inputsTableView.tableFooterView?.isHidden = true
+        inputsTableView.alwaysBounceVertical = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
         self.inputsTableView.addGestureRecognizer(tap)
         // self.inputsTableView.contentInset.top = 30
