@@ -38,10 +38,12 @@ __Enroute__ is a package tracking app that stores and tracks shipments of multip
 - [X] Username and num packages expecting displayed at top of list view
 - [X] User can view status of packages in list view
 - [X] Color of cell icon changes according to delivery status
-- [ ] User will receive a notification when the package is delivered
+- [X] Layout of views with input fields are keyboard friendly
+- [X] Carrier selection has dropdown menu/slider/picker for convenience
 
 **Optional Nice-to-have Stories**
 
+- [ ] User will receive a notification when the package is delivered
 - [ ] User can sort packages by estimated arrival time
 - [X] User can remove a package from the list
 - [X] User can view past locations of package and its arrival times at those locations
@@ -59,6 +61,9 @@ https://recordit.co/VLTLTC6tXQ
 ### Milestone 3 demo
 --------------General---------------------------Track Details new styling----------<br>
 <img src="http://g.recordit.co/dTqVLhWUXt.gif" title='Video Walkthrough' width='300' alt='Video Walkthrough'> <img src="http://g.recordit.co/giigp1fF6W.gif" width=303> 
+
+### Milestone 4 demo
+https://youtu.be/0t9_Gvs0NhA
 
 ### 2. Screen Archetypes
 
