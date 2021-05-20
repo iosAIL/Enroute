@@ -66,7 +66,6 @@ public class AYPopupPickerView: UIView {
         headerView.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
         
         doneButton = UIButton(type: .system)
-        doneButton.titleLabel!.font = .systemFont(ofSize: 17)
         headerView.addSubview(doneButton)
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -16).isActive = true
@@ -76,7 +75,6 @@ public class AYPopupPickerView: UIView {
         doneButton.addTarget(self, action: #selector(done), for: .touchUpInside)
         
         cancelButton = UIButton(type: .system)
-        cancelButton.titleLabel!.font = .systemFont(ofSize: 17)
         headerView.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).isActive = true
